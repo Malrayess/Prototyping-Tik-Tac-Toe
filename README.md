@@ -1,1 +1,1 @@
-# Prototyping-Tik-Tac-Toe
+# Prototyping-Tic-Tac-Toe
