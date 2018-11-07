@@ -1,9 +1,11 @@
 String title="Tic-Tac-Toe", exitbutton="Exit", easybutton="Easy Mode", mediumbutton="Medium Mode", hardbutton="Hard Mode", xscoreboard="X = ", oscoreboard="O = ", textscoreboard="Scoreboard", playasswitch="Start game as: ", backgroundswitch="Play in: ";
 PFont  titleFont, exit, easy, medium, hard, xscore, oscore, scoreboard, playas, background;
 
+int screenW = width, menuW = screenW*1/3, screenH = height, sbh = screenH*1/8, playareaH = screenH - sbh, playareaW = playareaH, statusW = screenW - menuW - playareaW, cellD = playareaW*1/3, colx = menuW, col2x = menuW + cellD, col3x = menuW + (cellD*2);
+
 void setup () {
   fullScreen();
-
+  println (screenW, menuW, screenH, sbh, playareaH, playareaW, statusW, cellD, colx, col2x, col3x);
   background(0);
 
   stroke(#FFFFFF);
@@ -16,7 +18,7 @@ void setup () {
   line(width, height*2/16, width*1/3, height*2/16); //scoreboard
   line(width*8.35/16, height*2/16, width*8.35/16, height); // tictactoe line 1 (left)
   line(width*11.5/16, height*2/16, width*11.5/16, height); // tictactoe line 2 (right/center)
-  line(width*14.5/16, height*2/16, width*14.5/16, height); // dividing line between tictactoe and message of who won/lose/tie and who's turn it is (far right)
+  line(width*1/3, sbh, statusW, screenH); // dividing line between tictactoe and message of who won/lose/tie and who's turn it is (far right)
   line(width*1/3, height*6.8/16, width*14.5/16, height*6.8/16); // tictactoe line 1 width (top)
   line(width*1/3, height*12/16, width*14.5/16, height*12/16); // tictactoe line 2 width (bottom)
   line(0, height-1, width, height-1); //bottom line closing everything
@@ -68,17 +70,18 @@ void setup () {
 
   playas = createFont ("Harrington", 55);
   textAlign (LEFT, CENTER);
-  textFont(playas, 30);
+  textFont(playas, 45);
   text(playasswitch, 0+15, height*9/16, width*1/3, height*10/16);
 
   background = createFont ("Harrington", 55);
   textAlign (LEFT, CENTER);
-  textFont(background, 30);
+  textFont(background, 45);
   text(backgroundswitch, 0+15, height*10/16, width*1/3, height*10.5/16);
 }
 
 void draw () {
-  if (mouseX>=0 && mouseX<=width*1/3 && mouseY>=height*3/16 && mouseY<=((height*4/16) + (height*3/16))) {
+  //easy mode hover effect
+  if (mouseX>=0 && mouseX<=width*1/3 && mouseY>=height*4/16 && mouseY<=((height*4/16) + (height*3/16))) {
     fill(#FFFFFF);
     rect(0, height*4/16, width*1/3, height*3/16);
     fill(0);
@@ -92,6 +95,38 @@ void draw () {
     textAlign (CENTER, CENTER);
     textFont(easy, 75);
     text(easybutton, 0, height*4/16, width*1/3, height*3/16);
+  }
+  //medium mode hover effect
+  if (mouseX>=0 && mouseX<=width*1/3 && mouseY>=height*7/16 && mouseY<=((height*7/16) + (height*3/16))) {
+    fill(#FFFFFF);
+    rect(0, height*7/16, width*1/3, height*3/16);
+    fill(0);
+    textAlign (CENTER, CENTER);
+    textFont(medium, 75);
+    text(mediumbutton, 0, height*7/16, width*1/3, height*3/16);
+  } else {
+    fill(0);
+    rect(0, height*7/16, width*1/3, height*3/16);
+    fill(#FFFFFF);
+    textAlign (CENTER, CENTER);
+    textFont(medium, 75);
+    text(mediumbutton, 0, height*7/16, width*1/3, height*3/16);
+  }
+  //hard mode hover effect
+  if (mouseX>=0 && mouseX<=width*1/3 && mouseY>=height*10/16 && mouseY<=((height*10/16) + (height*3/16))) {
+    fill(#FFFFFF);
+    rect(0, height*10/16, width*1/3, height*3/16);
+    fill(0);
+    textAlign (CENTER, CENTER);
+    textFont(hard, 75);
+    text(hardbutton, 0, height*10/16, width*1/3, height*3/16);
+  } else {
+    fill(0);
+    rect(0, height*10/16, width*1/3, height*3/16);
+    fill(#FFFFFF);
+    textAlign (CENTER, CENTER);
+    textFont(hard, 75);
+    text(hardbutton, 0, height*10/16, width*1/3, height*3/16);
   }
 }
 
