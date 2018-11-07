@@ -1,13 +1,29 @@
 String title="Tic-Tac-Toe", exitbutton="Exit", easybutton="Easy Mode", mediumbutton="Medium Mode", hardbutton="Hard Mode", xscoreboard="X = ", oscoreboard="O = ", textscoreboard="Scoreboard", playasswitch="Start game as: ", backgroundswitch="Play in: ";
 PFont  titleFont, exit, easy, medium, hard, xscore, oscore, scoreboard, playas, background;
 
-int screenW = width, menuW = screenW*1/3, screenH = height, sbh = screenH*1/8, playareaH = screenH - sbh, playareaW = playareaH, statusW = screenW - menuW - playareaW, cellD = playareaW*1/3, colx = menuW, col2x = menuW + cellD, col3x = menuW + (cellD*2);
+int statusX, screenW, menuW, screenH, sbh, playareaH, playareaW, cellD, colx, col2x, col3x;
 
 void setup () {
   fullScreen();
-  println (screenW, menuW, screenH, sbh, playareaH, playareaW, statusW, cellD, colx, col2x, col3x);
   background(0);
 
+  statusX = width*14/16;
+  screenW = width;
+  menuW = screenW*1/3; 
+  screenH = height;
+  sbh = screenH*1/8;
+  playareaH = screenH - sbh;
+  playareaW = width - menuW - (width - statusX); 
+  cellD = playareaW*1/3;
+  colx = menuW;
+  col2x = menuW + cellD;
+  col3x = menuW + (cellD*2);
+
+  println(playareaW, playareaH, cellD, menuW, statusX, colx, col2x, col3x);
+  drawShapes();
+}
+
+void drawShapes() {
   stroke(#FFFFFF);
   strokeWeight(4);
   line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
@@ -16,11 +32,11 @@ void setup () {
   line(0, height*10/16, width*1/3, height*10/16); // medium button
   line(0, height*13/16, width*1/3, height*13/16); // hard button
   line(width, height*2/16, width*1/3, height*2/16); //scoreboard
-  line(width*8.35/16, height*2/16, width*8.35/16, height); // tictactoe line 1 (left)
-  line(width*11.5/16, height*2/16, width*11.5/16, height); // tictactoe line 2 (right/center)
-  line(width*1/3, sbh, statusW, screenH); // dividing line between tictactoe and message of who won/lose/tie and who's turn it is (far right)
-  line(width*1/3, height*6.8/16, width*14.5/16, height*6.8/16); // tictactoe line 1 width (top)
-  line(width*1/3, height*12/16, width*14.5/16, height*12/16); // tictactoe line 2 width (bottom)
+  line(col2x, sbh, col2x, screenH); // tictactoe line 1 (left)
+  line(col3x, sbh, col3x, screenH); // tictactoe line 2 (right/center)
+  line(statusX, sbh, statusX, screenH); // dividing line between tictactoe and message of who won/lose/tie and who's turn it is (far right)
+  line(menuW, sbh + playareaH*1/3, statusX, sbh + playareaH*1/3); // tictactoe line 1 width (top)
+  line(menuW, sbh + playareaH*2/3, statusX, sbh + playareaH*2/3); // tictactoe line 2 width (bottom)
   line(0, height-1, width, height-1); //bottom line closing everything
 
   fill(#FFFFFF);
@@ -88,6 +104,12 @@ void draw () {
     textAlign (CENTER, CENTER);
     textFont(easy, 75);
     text(easybutton, 0, height*4/16, width*1/3, height*3/16);
+    if (mousePressed) {
+      fill(#FFFFFF);
+      rect(0, height*4/16, width*1/3, height*3/16);
+      fill(0);
+      textAlign (CENTER, CENTER);
+    }
   } else {
     fill(0);
     rect(0, height*4/16, width*1/3, height*3/16);
