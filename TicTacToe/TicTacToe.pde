@@ -3,6 +3,8 @@ PFont  titleFont, exit, easy, medium, hard, xscore, oscore, scoreboard, playas, 
 
 int statusX, screenW, menuW, screenH, sbh, playareaH, playareaW, cellD, colx, col2x, col3x;
 
+boolean testBool = false;
+
 void setup () {
   fullScreen();
   background(0);
@@ -87,7 +89,7 @@ void drawShapes() {
   playas = createFont ("Harrington", 55);
   textAlign (LEFT, CENTER);
   textFont(playas, 45);
-  text(playasswitch, 0+15, height*9/16, width*1/3, height*10/16);
+  text(playasswitch, 0+15, height*9/16, width*1/3, (height*10/16)-10);
 
   background = createFont ("Harrington", 55);
   textAlign (LEFT, CENTER);
@@ -105,6 +107,8 @@ void draw () {
     textFont(easy, 75);
     text(easybutton, 0, height*4/16, width*1/3, height*3/16);
     if (mousePressed) {
+      testBool = !testBool;
+      
       fill(#FFFFFF);
       rect(0, height*4/16, width*1/3, height*3/16);
       fill(0);
@@ -150,6 +154,8 @@ void draw () {
     textFont(hard, 75);
     text(hardbutton, 0, height*10/16, width*1/3, height*3/16);
   }
+  
+  placing();
 }
 
 void mousePressed () {
