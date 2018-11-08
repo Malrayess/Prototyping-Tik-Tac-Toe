@@ -18,7 +18,7 @@ void setup () {
   line(width, height*2/16, width*1/3, height*2/16); //scoreboard
   line(width*8.35/16, height*2/16, width*8.35/16, height); // tictactoe line 1 (left)
   line(width*11.5/16, height*2/16, width*11.5/16, height); // tictactoe line 2 (right/center)
-  line(width*1/3, sbh, statusW, screenH); // dividing line between tictactoe and message of who won/lose/tie and who's turn it is (far right)
+  //line(width*1/3, sbh, statusW, screenH); // dividing line between tictactoe and message of who won/lose/tie and who's turn it is (far right)
   line(width*1/3, height*6.8/16, width*14.5/16, height*6.8/16); // tictactoe line 1 width (top)
   line(width*1/3, height*12/16, width*14.5/16, height*12/16); // tictactoe line 2 width (bottom)
   line(0, height-1, width, height-1); //bottom line closing everything
