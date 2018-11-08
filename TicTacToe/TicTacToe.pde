@@ -32,19 +32,11 @@ void drawShapes() {
   line(0, height*10/16, width*1/3, height*10/16); // medium button
   line(0, height*13/16, width*1/3, height*13/16); // hard button
   line(width, height*2/16, width*1/3, height*2/16); //scoreboard
-<<<<<<< HEAD
-  line(width*8.35/16, height*2/16, width*8.35/16, height); // tictactoe line 1 (left)
-  line(width*11.5/16, height*2/16, width*11.5/16, height); // tictactoe line 2 (right/center)
-  //line(width*1/3, sbh, statusW, screenH); // dividing line between tictactoe and message of who won/lose/tie and who's turn it is (far right)
-  line(width*1/3, height*6.8/16, width*14.5/16, height*6.8/16); // tictactoe line 1 width (top)
-  line(width*1/3, height*12/16, width*14.5/16, height*12/16); // tictactoe line 2 width (bottom)
-=======
   line(col2x, sbh, col2x, screenH); // tictactoe line 1 (left)
   line(col3x, sbh, col3x, screenH); // tictactoe line 2 (right/center)
   line(statusX, sbh, statusX, screenH); // dividing line between tictactoe and message of who won/lose/tie and who's turn it is (far right)
   line(menuW, sbh + playareaH*1/3, statusX, sbh + playareaH*1/3); // tictactoe line 1 width (top)
   line(menuW, sbh + playareaH*2/3, statusX, sbh + playareaH*2/3); // tictactoe line 2 width (bottom)
->>>>>>> 3826edb7c39d441f123b76a05a05789e741c5b8c
   line(0, height-1, width, height-1); //bottom line closing everything
 
   fill(#FFFFFF);
