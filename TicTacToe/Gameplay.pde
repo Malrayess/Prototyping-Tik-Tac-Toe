@@ -1,19 +1,13 @@
-String drawXfunction = "X";
+//String drawXfunction = "X";
 PFont drawX, drawO;
 
-boolean empty = true;
+int[] gamegrid;
 
-void placing() {
-  if (mousePressed) {
-
-    if (mouseX>=width*1/3 && mouseX<=col2x && mouseY>=sbh && mouseY<=(sbh + playareaH*1/3) && empty) {
+void placing(int c, int r, String symbol) {
 
       fill(255);
       drawX = createFont ("TimesNewRomanPS-BoldMT-48", 55);
       textAlign (CENTER, TOP);
       textFont(drawX, 250);
-      text(drawXfunction, width*1/3, sbh-50, playareaW*1/3, (sbh + playareaH*1/3));
-      empty = false;
-    }
-  }
+      text(symbol, menuW + (cellD/2) + (cellD*c), sbh + (playareaH*r/3));
 }

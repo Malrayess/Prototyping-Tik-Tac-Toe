@@ -2,6 +2,8 @@ String title="Tic-Tac-Toe", exitbutton="Exit", easybutton="Easy Mode", mediumbut
 PFont  titleFont, exit, easy, medium, hard, xscore, oscore, scoreboard, playas, background;
 
 int statusX, screenW, menuW, screenH, sbh, playareaH, playareaW, cellD, colx, col2x, col3x;
+String lastPressed = "";
+String[][] grid;
 
 boolean testBool = false;
 
@@ -21,7 +23,16 @@ void setup () {
   col2x = menuW + cellD;
   col3x = menuW + (cellD*2);
 
-  println(playareaW, playareaH, cellD, menuW, statusX, colx, col2x, col3x);
+  grid = new String[3][3];
+  for(int c=0;c<=2;c++)
+  {
+    for(int r=0;r<=2;r++)
+    {
+      grid[c][r] = "";
+    }
+  }
+
+  println(screenW, playareaW, playareaH, cellD, menuW, statusX, colx, col2x, col3x);
   drawShapes();
 }
 
@@ -33,7 +44,7 @@ void drawShapes() {
   line(0, height*7/16, width*1/3, height*7/16); // easy button
   line(0, height*10/16, width*1/3, height*10/16); // medium button
   line(0, height*13/16, width*1/3, height*13/16); // hard button
-  line(width, height*2/16, width*1/3, height*2/16); //scoreboard
+  line(width, sbh, width*1/3, sbh); //scoreboard
   line(col2x, sbh, col2x, screenH); // tictactoe line 1 (left)
   line(col3x, sbh, col3x, screenH); // tictactoe line 2 (right/center)
   line(statusX, sbh, statusX, screenH); // dividing line between tictactoe and message of who won/lose/tie and who's turn it is (far right)
@@ -108,7 +119,7 @@ void draw () {
     text(easybutton, 0, height*4/16, width*1/3, height*3/16);
     if (mousePressed) {
       testBool = !testBool;
-      
+
       fill(#FFFFFF);
       rect(0, height*4/16, width*1/3, height*3/16);
       fill(0);
@@ -154,8 +165,24 @@ void draw () {
     textFont(hard, 75);
     text(hardbutton, 0, height*10/16, width*1/3, height*3/16);
   }
-  
-  placing();
+  if (mousePressed) {
+    int c, r;
+    c = (mouseX-menuW)/cellD;
+    r = (mouseY-sbh)/(playareaH*1/3);
+    println(c,r,cellD,mouseX-menuW,mouseY-sbh,sbh,mouseY,screenH);
+    if (c>=0 && c<=2 && r>=0 && r<=2 && grid[c][r] == "") {
+      if(lastPressed == "X") {
+        placing(c, r, "O");
+        lastPressed = "O";
+        grid[c][r] = "O";
+      }
+      else {
+        placing(c, r, "X");
+        lastPressed = "X";
+        grid[c][r] = "X";
+      }
+    }
+  }
 }
 
 void mousePressed () {
