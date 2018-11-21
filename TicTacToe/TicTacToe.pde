@@ -65,7 +65,8 @@ void drawShapes() {
   textAlign (CENTER, CENTER);
   textFont(exit, 25);
   text(exitbutton, 0, 0, 100, 50);
-
+  
+  //textDraw(easybutton, easy, height, 255, CENTER, CENTER, 0, height*7/16, width*1/3, height*7/16); // title
   fill(#FFFFFF);
   easy = createFont ("Harrington", 55);
   textAlign (CENTER, CENTER);
@@ -169,7 +170,7 @@ void draw () {
     int c, r;
     c = (mouseX-menuW)/cellD;
     r = (mouseY-sbh)/(playareaH*1/3);
-    println(c,r,cellD,mouseX-menuW,mouseY-sbh,sbh,mouseY,screenH);
+    println(c, r, cellD, mouseX-menuW, mouseY-sbh, sbh, mouseY, screenH);
     if (c>=0 && c<=2 && r>=0 && r<=2 && grid[c][r] == "") {
       if(lastPressed == "X") {
         placing(c, r, "O");
