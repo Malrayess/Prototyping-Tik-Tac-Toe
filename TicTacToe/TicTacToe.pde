@@ -8,8 +8,10 @@ String[][] grid;
 boolean testBool = false;
 
 void setup () {
-  fullScreen();
+  //fullScreen();
+  size(1100, 800);
   background(0);
+  textSetup();
 
   statusX = width*14/16;
   screenW = width;
@@ -66,12 +68,12 @@ void drawShapes() {
   textFont(exit, 25);
   text(exitbutton, 0, 0, 100, 50);
   
-  //textDraw(easybutton, easy, height, 255, CENTER, CENTER, 0, height*7/16, width*1/3, height*7/16); // title
-  fill(#FFFFFF);
+  textDraw(easybutton, easy, height, 255, CENTER, CENTER, 0, height*3/16, width*1/3, height*4/16/*0, height*7/16, width*1/3, height*7/16*/); // title
+  /*fill(#FFFFFF);
   easy = createFont ("Harrington", 55);
   textAlign (CENTER, CENTER);
   textFont(easy, 75);
-  text(easybutton, 0, height*3/16, width*1/3, height*4/16);
+  text(easybutton, 0, height*3/16, width*1/3, height*4/16);*/
 
   medium = createFont ("Harrington", 55);
   textAlign (CENTER, CENTER);
