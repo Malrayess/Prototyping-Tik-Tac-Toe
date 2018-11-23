@@ -1,5 +1,5 @@
 String title="Tic-Tac-Toe", exitbutton="Exit", easybutton="Easy Mode", mediumbutton="Medium Mode", hardbutton="Hard Mode", xscoreboard="X = ", oscoreboard="O = ", textscoreboard="Scoreboard", playasswitch="Start game as: ", backgroundswitch="Play in: ";
-PFont  titleFont, exit, easy, medium, hard, xscore, oscore, scoreboard, playas, background;
+PFont mainFont /*, titleFont, exit, easy, medium, hard, xscore, oscore, scoreboard, playas, background*/;
 
 int statusX, screenW, menuW, screenH, sbh, playareaH, playareaW, cellD, colx, col2x, col3x;
 String lastPressed = "";
@@ -8,8 +8,8 @@ String[][] grid;
 boolean testBool = false;
 
 void setup () {
-  //fullScreen();
-  size(1100, 800);
+  fullScreen();
+  //size(900, 800);
   background(0);
   textSetup();
 
@@ -57,61 +57,71 @@ void drawShapes() {
   fill(#FFFFFF);
   rect(0, 0, 100, 50); // exit button
 
-  titleFont = createFont ("Harrington", 55);
+  textDraw(title, mainFont, height, 255, CENTER, CENTER, 0, height*1/4, width*1/3, height*1/4);
+  /*titleFont = createFont ("Harrington", 55);
   textAlign (CENTER, CENTER);
   textFont(titleFont, 75); //Change the number until it fits
-  text(title, 0, height*1/16, width*1/3, height*2/16);
-
-  fill(0);
+  text(title, 0, height*1/16, width*1/3, height*2/16);*/
+  
+  textDraw(exitbutton, mainFont, height, 0, CENTER, CENTER, 0, 0, 100, 50);
+  /*fill(0);
   exit = createFont ("Stencil", 55);
   textAlign (CENTER, CENTER);
   textFont(exit, 25);
-  text(exitbutton, 0, 0, 100, 50);
+  text(exitbutton, 0, 0, 100, 50);*/
   
-  textDraw(easybutton, easy, height, 255, CENTER, CENTER, 0, height*3/16, width*1/3, height*4/16/*0, height*7/16, width*1/3, height*7/16*/); // title
+  textDraw(easybutton, mainFont, height, 255, CENTER, CENTER, 0, height*3/16, width*1/3, height*4/16 /*0, height*7/16, width*1/3, height*7/16*/); // title
   /*fill(#FFFFFF);
   easy = createFont ("Harrington", 55);
   textAlign (CENTER, CENTER);
   textFont(easy, 75);
   text(easybutton, 0, height*3/16, width*1/3, height*4/16);*/
-
-  medium = createFont ("Harrington", 55);
+  
+  textDraw(mediumbutton, mainFont, height, 255, CENTER, CENTER, 0, height*5/16, width*1/3, height*6/16);
+  /*medium = createFont ("Harrington", 55);
   textAlign (CENTER, CENTER);
   textFont(medium, 75);
-  text(mediumbutton, 0, height*5/16, width*1/3, height*6/16);
-
-  hard = createFont ("Harrington", 55);
+  text(mediumbutton, 0, height*5/16, width*1/3, height*6/16);*/
+  
+  textDraw(hardbutton, mainFont, height, 255, CENTER, CENTER, 0, height*7/16, width*1/3, height*8/16);
+  /*hard = createFont ("Harrington", 55);
   textAlign (CENTER, CENTER);
   textFont(hard, 75);
-  text(hardbutton, 0, height*7/16, width*1/3, height*8/16);
+  text(hardbutton, 0, height*7/16, width*1/3, height*8/16);*/
 
-  scoreboard = createFont ("Harrington", 55);
+  textDraw(textscoreboard, mainFont, height, 255, CENTER, CENTER, width*8/16, 0, width*4/16, height*1/16);
+  /*scoreboard = createFont ("Harrington", 55);
   textAlign (CENTER, CENTER);
   textFont(scoreboard, 30);
-  text(textscoreboard, width*8/16, 0, width*4/16, height*1/16);
+  text(textscoreboard, width*8/16, 0, width*4/16, height*1/16);*/
 
-  xscore = createFont ("Stencil", 55);
+  textDraw(xscoreboard, mainFont, height, 255, CENTER, CENTER, width*1/3, 0, width*4/16, height*2/16);
+  /*xscore = createFont ("Stencil", 55);
   textAlign (CENTER, CENTER);
   textFont(xscore, 75);
-  text(xscoreboard, width*1/3, 0, width*4/16, height*2/16);
-
-  oscore = createFont ("Stencil", 55);
+  text(xscoreboard, width*1/3, 0, width*4/16, height*2/16);*/
+  
+  textDraw(oscoreboard, mainFont, height, 255, CENTER, CENTER, width*6/16, 0, width*14/16, height*2/16);
+  /*oscore = createFont ("Stencil", 55);
   textAlign (CENTER, CENTER);
   textFont(oscore, 75);
-  text(oscoreboard, width*6/16, 0, width*14/16, height*2/16);
+  text(oscoreboard, width*6/16, 0, width*14/16, height*2/16);*/
 
-  playas = createFont ("Harrington", 55);
+  textDraw(playasswitch, mainFont, height, 255, CENTER, CENTER, 0+15, height*9/16, width*1/3, (height*10/16)-10);
+  /*playas = createFont ("Harrington", 55);
   textAlign (LEFT, CENTER);
   textFont(playas, 45);
-  text(playasswitch, 0+15, height*9/16, width*1/3, (height*10/16)-10);
+  text(playasswitch, 0+15, height*9/16, width*1/3, (height*10/16)-10);*/
 
-  background = createFont ("Harrington", 55);
+  textDraw(backgroundswitch, mainFont, height, 255, CENTER, CENTER, 0+15, height*10/16, width*1/3, height*10.5/16);
+  /*background = createFont ("Harrington", 55);
   textAlign (LEFT, CENTER);
   textFont(background, 45);
-  text(backgroundswitch, 0+15, height*10/16, width*1/3, height*10.5/16);
+  text(backgroundswitch, 0+15, height*10/16, width*1/3, height*10.5/16);*/
 }
 
 void draw () {
+  /*
   //easy mode hover effect
   if (mouseX>=0 && mouseX<=width*1/3 && mouseY>=height*4/16 && mouseY<=((height*4/16) + (height*3/16))) {
     fill(#FFFFFF);
@@ -167,7 +177,7 @@ void draw () {
     textAlign (CENTER, CENTER);
     textFont(hard, 75);
     text(hardbutton, 0, height*10/16, width*1/3, height*3/16);
-  }
+  }*/
   if (mousePressed) {
     int c, r;
     c = (mouseX-menuW)/cellD;

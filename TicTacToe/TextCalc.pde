@@ -1,12 +1,5 @@
 void textSetup() {
-  easy = createFont ("Harrington", 55);
-  medium = createFont ("Harrington", 55);
-  hard = createFont ("Harrington", 55);
-  scoreboard = createFont ("Harrington", 55);
-  xscore = createFont ("Harrington", 55);
-  oscore = createFont ("Harrington", 55);
-  playas = createFont ("Harrington", 55);
-  background = createFont ("Harrington", 55);
+  mainFont = createFont ("Harrington", 55);
 }
 void textDraw(String string, PFont font, float height, color ink, int alignH, int alignV, float rectX, float rectY, float rectWidth, float rectHeight ) {
   float fontSize = height;
@@ -17,8 +10,14 @@ void textDraw(String string, PFont font, float height, color ink, int alignH, in
   println(string.length() );
   if (string.length() >= 13) { //number changes depending on geometry ratio (width/height)
     fontSize = textCalculator(height, string, rectWidth);
-  } else if (string.length() >= 9) {
+  } else if (string.length() >= 11) {
+    fontSize = fontSize * 0.06;
+  }else if (string.length() >= 10) {
     fontSize = fontSize * 0.08; // change number as needed
+  } else if (string.length() >= 9) {
+    fontSize = fontSize * 0.10; // change number as needed
+  } else if (string.length() >= 2) {
+    fontSize = fontSize * 0.06;
   }
 
   textFont(font, fontSize); //Change the number until it fits
