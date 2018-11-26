@@ -1,7 +1,24 @@
 void textSetup() {
   mainFont = createFont ("Harrington", 55);
+  secondaryFont = createFont ("Stencil", 55);
+  placingFont = createFont ("TimesNewRomanPS-BoldMT-48", 55);
 }
-void textDraw(String string, PFont font, float height, color ink, int alignH, int alignV, float rectX, float rectY, float rectWidth, float rectHeight ) {
+
+/*
+void xoDraw(String string, PFont font, float height, color ink, int alignH, int alignV, float rectX, float rectY, int rectWidth) {
+  float fontSize = height;
+  fill(ink);
+  textAlign(alignH, alignV);
+
+  if (string.length() >= 1) { //number changes depending on geometry ratio (width/height)
+    fontSize = textCalculator(height, string, rectWidth);
+  }
+
+  textFont(font, fontSize); //Change the number until it fits
+  text(string, rectX, rectY, menuW, height*6/16);
+}
+*/
+void textDraw(String string, PFont font, float height, color ink, int alignH, int alignV, float rectX, float rectY, float rectWidth, float rectHeight) {
   float fontSize = height;
   fill(ink);
   textAlign(alignH, alignV);
@@ -10,12 +27,18 @@ void textDraw(String string, PFont font, float height, color ink, int alignH, in
   println(string.length() );
   if (string.length() >= 13) { //number changes depending on geometry ratio (width/height)
     fontSize = textCalculator(height, string, rectWidth);
+  } else if (string.length() >= 12) {
+    fontSize = fontSize * 0.05;
   } else if (string.length() >= 11) {
-    fontSize = fontSize * 0.06;
-  }else if (string.length() >= 10) {
-    fontSize = fontSize * 0.08; // change number as needed
+    fontSize = fontSize * 0.09;
+  } else if (string.length() >= 10) {
+    fontSize = fontSize * 0.04; // change number as needed
   } else if (string.length() >= 9) {
     fontSize = fontSize * 0.10; // change number as needed
+  } else if (string.length() >= 7) {
+    fontSize = fontSize * 0.04;
+  } else if (string.length() >= 4) {
+    fontSize = fontSize * 0.04;
   } else if (string.length() >= 2) {
     fontSize = fontSize * 0.06;
   }
