@@ -107,7 +107,7 @@ void drawShapes() {
   textFont(scoreboard, 30);
   text(textscoreboard, width*8/16, 0, width*4/16, height*1/16);*/
 
-  textDraw(xscoreboard, secondaryFont, height, 255, TOP, CENTER, width*8/16, 0-150, width*4/16, height*1/16);
+  textDraw(xscoreboard, secondaryFont, height, 255, TOP, CENTER, width*8/16, 0, width*4/16, height*1/16);
   /*xscore = createFont ("Stencil", 55);
   textAlign (CENTER, CENTER);
   textFont(xscore, 75);
