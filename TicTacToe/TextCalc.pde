@@ -36,15 +36,16 @@ void textDraw(String string, PFont font, float height, color ink, int alignH, in
   } else if (string.length() >= 9) {
     fontSize = fontSize * 0.10; // change number as needed
   } else if (string.length() >= 7) {
-    fontSize = fontSize * 0.04;
+    fontSize = fontSize * 0.06;
   } else if (string.length() >= 4) {
-    fontSize = fontSize * 0.04;
+    fontSize = fontSize * 0.06;
   } else if (string.length() >= 2) {
     fontSize = fontSize * 0.06;
   }
 
   textFont(font, fontSize); //Change the number until it fits
-  text(string, rectX, rectY, menuW, height*6/16);
+  //text(string, rectX, rectY, menuW, height*6/16);
+  text(string, rectX, rectY, menuW, rectHeight);
 }
 float textCalculator(float size, String string, float rectWidth) {
   float i = 1;
