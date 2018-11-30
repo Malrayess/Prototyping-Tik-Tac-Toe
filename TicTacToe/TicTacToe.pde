@@ -180,7 +180,7 @@ void draw () {
    }*/
   if (mousePressed) {
     int c, r;
-    c = (mouseX-menuW)/cellD;
+    c = (mouseX-menuW/cellD);
     r = (mouseY-sbh)/(playareaH*1/3);
     println(c, r, cellD, mouseX-menuW, mouseY-sbh, sbh, mouseY, screenH);
     if (c>=0 && c<=2 && r>=0 && r<=2 && grid[c][r] == "") {
