@@ -1,4 +1,4 @@
-String title="Tic-Tac-Toe", exitbutton="Exit", easybutton="Easy Mode", mediumbutton="Medium Mode", hardbutton="Hard Mode", xscoreboard="X = ", oscoreboard="O = ", textscoreboard="Scoreboard", playasswitch="Start game as:", backgroundswitch="Play in:";
+String title="Tic-Tac-Toe", exitbutton="Exit", easybutton="Easy Mode", mediumbutton="Medium Mode", hardbutton="Hard Mode", xscoreboard="X = ", oscoreboard="O = ", textscoreboard="Scoreboard", playasswitch="Start game as:", backgroundswitch="Play in:", status="";
 PFont mainFont, secondaryFont, placingFont /*, titleFont, exit, easy, medium, hard, xscore, oscore, scoreboard, playas, background*/;
 
 int statusX, screenW, menuW, screenH, sbh, playareaH, playareaW, cellD, colx, col2x, col3x;
@@ -185,13 +185,35 @@ void draw () {
     println(c, r, cellD, mouseX-menuW, mouseY-sbh, sbh, mouseY, screenH);
     if (c>=0 && c<=2 && r>=0 && r<=2 && grid[c][r] == "" && mouseX>menuW) {
       if (lastPressed == "X") {
+        status = "It is player X's turn";
+        pushMatrix();
+        translate(width*15/16, height*2/7);
+        rotate(HALF_PI);
+        text(status, 0, 0);
+        //textDraw(status, mainFont, height, 255, CENTER, CENTER, statusX, height*1/2, width*6/16, height*2/16);
+        popMatrix();
+
         placing(c, r, "O"); // places O
         lastPressed = "O"; // switches last pressed to O
-        grid[c][r] = "O"; // fills that part of grid with O 
+        grid[c][r] = "O"; // fills that part of grid with O
       } else {
+        status = "It is player O's turn";
+        pushMatrix();
+        translate(width*15/16, height*2/7);
+        rotate(HALF_PI);
+        text(status, 0, 0);
+        //textDraw(status, mainFont, height, 255, CENTER, CENTER, statusX, height*1/2, width*6/16, height*2/16);
+        popMatrix();
+
         placing(c, r, "X"); // places X
         lastPressed = "X"; // switches last pressed to X
         grid[c][r] = "X"; // fills that part of grid with X
+
+        fill(0);
+        rect(statusX, sbh, width, height-1);
+        stroke(#FFFFFF);
+        strokeWeight(4);    
+        line(statusX, sbh, statusX, screenH); // Status line
       }
     }
   }
@@ -214,7 +236,7 @@ void keyPressed() {
     line(menuW, sbh + playareaH*1/3, statusX, sbh + playareaH*1/3); // tictactoe line 1 width (top)
     line(menuW, sbh + playareaH*2/3, statusX, sbh + playareaH*2/3); // tictactoe line 2 width (bottom)
     line(statusX, sbh, statusX, screenH); // Status line
-    
+
     for (int c=0; c<=2; c++)
     {
       for (int r=0; r<=2; r++)
