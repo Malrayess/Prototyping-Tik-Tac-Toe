@@ -181,13 +181,15 @@ void draw () {
   if (mousePressed) {
     int c, r;
     c = (mouseX-menuW/cellD);
+    c = ((mouseX-menuW)/cellD);
     r = (mouseY-sbh)/(playareaH*1/3);
     println(c, r, cellD, mouseX-menuW, mouseY-sbh, sbh, mouseY, screenH);
-    if (c>=0 && c<=2 && r>=0 && r<=2 && grid[c][r] == "") {
+    if (c>=0 && c<=2 && r>=0 && r<=2 && grid[c][r] == "" && mouseX>menuW) { // defines boundaries of where mouse is clicked, if clicked in certain area then it AND in another AND etc. then it runs the code
       if (lastPressed == "X") {
         placing(c, r, "O"); // places O
         lastPressed = "O"; // switches last pressed O
         grid[c][r] = "O"; // fills that part of grid with O 
+        grid[c][r] = "O"; // fills that part of grid with O
       } else {
         placing(c, r, "X"); // places X
         lastPressed = "X"; // switches last pressed to X
@@ -214,7 +216,8 @@ void keyPressed() {
     line(menuW, sbh + playareaH*1/3, statusX, sbh + playareaH*1/3); // tictactoe line 1 width (top)
     line(menuW, sbh + playareaH*2/3, statusX, sbh + playareaH*2/3); // tictactoe line 2 width (bottom)
     line(statusX, sbh, statusX, screenH); // Status line
-    
+    line(0, height-1, width, height-1); //bottom line closing everything
+
     for (int c=0; c<=2; c++)
     {
       for (int r=0; r<=2; r++)
@@ -222,5 +225,6 @@ void keyPressed() {
         grid[c][r] = "";
       }
     }
+    lastPressed= "O";
   }
 }
