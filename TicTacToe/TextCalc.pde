@@ -6,18 +6,18 @@ void textSetup() {
 
 /*
 void xoDraw(String string, PFont font, float height, color ink, int alignH, int alignV, float rectX, float rectY, int rectWidth) {
-  float fontSize = height;
-  fill(ink);
-  textAlign(alignH, alignV);
-
-  if (string.length() >= 1) { //number changes depending on geometry ratio (width/height)
-    fontSize = textCalculator(height, string, rectWidth);
-  }
-
-  textFont(font, fontSize); //Change the number until it fits
-  text(string, rectX, rectY, menuW, height*6/16);
-}
-*/
+ float fontSize = height;
+ fill(ink);
+ textAlign(alignH, alignV);
+ 
+ if (string.length() >= 1) { //number changes depending on geometry ratio (width/height)
+ fontSize = textCalculator(height, string, rectWidth);
+ }
+ 
+ textFont(font, fontSize); //Change the number until it fits
+ text(string, rectX, rectY, menuW, height*6/16);
+ }
+ */
 void textDraw(String string, PFont font, float height, color ink, int alignH, int alignV, float rectX, float rectY, float rectWidth, float rectHeight) {
   float fontSize = height;
   fill(ink);
@@ -27,6 +27,8 @@ void textDraw(String string, PFont font, float height, color ink, int alignH, in
   println(string.length() );
   if (string.length() >= 13) { //number changes depending on geometry ratio (width/height)
     fontSize = textCalculator(height, string, rectWidth);
+  } else if (string.length() >= 17) {
+    fontSize = fontSize * 0.001;
   } else if (string.length() >= 12) {
     fontSize = fontSize * 0.05;
   } else if (string.length() >= 11) {

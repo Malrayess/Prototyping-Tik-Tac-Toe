@@ -5,8 +5,6 @@ int statusX, screenW, menuW, screenH, sbh, playareaH, playareaW, cellD, colx, co
 String lastPressed = "";
 String[][] grid;
 
-boolean testBool = false;
-
 void setup () {
   fullScreen();
   //size(900, 800);
@@ -34,6 +32,8 @@ void setup () {
     }
   }
 
+  lastPressed = "O";
+  updateStatus("X");
   println(screenW, playareaW, playareaH, cellD, menuW, statusX, colx, col2x, col3x);
   drawShapes();
 }
@@ -132,7 +132,7 @@ void draw () {
    text(easybutton, 0, height*4/16, width*1/3, height*3/16);
    if (mousePressed) {
    testBool = !testBool;
-
+   
    fill(#FFFFFF);
    rect(0, height*4/16, width*1/3, height*3/16);
    fill(0);
@@ -145,39 +145,8 @@ void draw () {
    textAlign (CENTER, CENTER);
    textFont(easy, 75);
    text(easybutton, 0, height*4/16, width*1/3, height*3/16);
-   }
-   //medium mode hover effect
-   if (mouseX>=0 && mouseX<=width*1/3 && mouseY>=height*7/16 && mouseY<=((height*7/16) + (height*3/16))) {
-   fill(#FFFFFF);
-   rect(0, height*7/16, width*1/3, height*3/16);
-   fill(0);
-   textAlign (CENTER, CENTER);
-   textFont(medium, 75);
-   text(mediumbutton, 0, height*7/16, width*1/3, height*3/16);
-   } else {
-   fill(0);
-   rect(0, height*7/16, width*1/3, height*3/16);
-   fill(#FFFFFF);
-   textAlign (CENTER, CENTER);
-   textFont(medium, 75);
-   text(mediumbutton, 0, height*7/16, width*1/3, height*3/16);
-   }
-   //hard mode hover effect
-   if (mouseX>=0 && mouseX<=width*1/3 && mouseY>=height*10/16 && mouseY<=((height*10/16) + (height*3/16))) {
-   fill(#FFFFFF);
-   rect(0, height*10/16, width*1/3, height*3/16);
-   fill(0);
-   textAlign (CENTER, CENTER);
-   textFont(hard, 75);
-   text(hardbutton, 0, height*10/16, width*1/3, height*3/16);
-   } else {
-   fill(0);
-   rect(0, height*10/16, width*1/3, height*3/16);
-   fill(#FFFFFF);
-   textAlign (CENTER, CENTER);
-   textFont(hard, 75);
-   text(hardbutton, 0, height*10/16, width*1/3, height*3/16);
    }*/
+
   if (mousePressed) {
     int c, r;
     c = (mouseX-menuW/cellD);
@@ -185,40 +154,40 @@ void draw () {
     r = (mouseY-sbh)/(playareaH*1/3);
     println(c, r, cellD, mouseX-menuW, mouseY-sbh, sbh, mouseY, screenH);
     if (c>=0 && c<=2 && r>=0 && r<=2 && grid[c][r] == "" && mouseX>menuW) { // defines boundaries of where mouse is clicked, if clicked in certain area then it AND in another AND etc. then it runs the code
-      if (lastPressed == "X") {
-        status = "It is player X's turn";
-        pushMatrix();
-        translate(width*15/16, height*2/7);
-        rotate(HALF_PI);
-        text(status, 0, 0);
-        //textDraw(status, mainFont, height, 255, CENTER, CENTER, statusX, height*1/2, width*6/16, height*2/16);
-        popMatrix();
-
+      if (lastPressed == "X") {  
+        updateStatus("X"); // updates status to O
         placing(c, r, "O"); // places O
         lastPressed = "O"; // switches last pressed O
         grid[c][r] = "O"; // fills that part of grid with O
-        grid[c][r] = "O"; // fills that part of grid with O
       } else {
-        status = "It is player O's turn";
-        pushMatrix();
-        translate(width*15/16, height*2/7);
-        rotate(HALF_PI);
-        text(status, 0, 0);
-        //textDraw(status, mainFont, height, 255, CENTER, CENTER, statusX, height*1/2, width*6/16, height*2/16);
-        popMatrix();
-
+        updateStatus("O"); // updates status to X
         placing(c, r, "X"); // places X
         lastPressed = "X"; // switches last pressed to X
         grid[c][r] = "X"; // fills that part of grid with X
-
-        fill(0);
-        rect(statusX, sbh, width, height-1);
-        stroke(#FFFFFF);
-        strokeWeight(4);
-        line(statusX, sbh, statusX, screenH); // Status line
       }
     }
   }
+}
+
+void updateStatus(String status) { // function to update the status message
+  fill(0);
+  rect(statusX, sbh, width, height-1);
+  stroke(#FFFFFF);
+  strokeWeight(4);
+  line(statusX, sbh, statusX, screenH); // Status line
+  fill(255);
+
+  String fullStatus = "It is player "+status+"'s turn";
+  float statusTxtX = width*15/16, statusTxtY = height*2.5/7;
+  
+  pushMatrix();
+  translate(statusTxtX, statusTxtY);
+  rotate(HALF_PI);
+  textSize(55);
+  textFont(mainFont);
+  text(fullStatus, 0, 0);
+  //textDraw(status, mainFont, height, 255, CENTER, CENTER, statusX, height*3/12, width, height*1/2);
+  popMatrix();
 }
 
 void mousePressed () {
@@ -248,5 +217,6 @@ void keyPressed() {
       }
     }
     lastPressed= "O";
+    updateStatus("X");
   }
 }
