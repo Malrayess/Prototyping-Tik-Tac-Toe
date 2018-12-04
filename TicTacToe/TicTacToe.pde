@@ -180,7 +180,6 @@ void draw () {
    }*/
   if (mousePressed) {
     int c, r;
-    c = (mouseX-menuW/cellD);
     c = ((mouseX-menuW)/cellD);
     r = (mouseY-sbh)/(playareaH*1/3);
     println(c, r, cellD, mouseX-menuW, mouseY-sbh, sbh, mouseY, screenH);
@@ -188,7 +187,6 @@ void draw () {
       if (lastPressed == "X") {
         placing(c, r, "O"); // places O
         lastPressed = "O"; // switches last pressed O
-        grid[c][r] = "O"; // fills that part of grid with O 
         grid[c][r] = "O"; // fills that part of grid with O
       } else {
         placing(c, r, "X"); // places X
