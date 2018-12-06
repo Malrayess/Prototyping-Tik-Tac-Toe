@@ -1,4 +1,3 @@
-/*
 boolean check3InRowX = false;
 boolean check3InRowO = false;
 boolean winX = false;
@@ -15,21 +14,21 @@ void check3InRow() {
     check3InRowX = true;
     check3InRowO = true;
   }
+
+  if (check3InRowX == true) {
+    onlyX();
+    winX = checkNestedFOR("X", onlyXPiece);
+  }
+
+  if (check3InRowO == true) {
+    onlyO();
+    winO = checkNestedFOR("O", onlyOPiece);
+  }
+
+  println("X's won:", winX);
+  println("O's won:", winO);
 }
 
-if (check3InRowX == true) {
-  onlyX();
-  winX = checkNestedFOR("X", onlyXPiece);
-}
-
-if (check3InRowO == true) {
-  onlyO();
-  winO = checkNestedFOR("O", onlyOPiece);
-}
-
-println("X's won:", winX);
-println("O's won:", winO);
-}
 void onlyX() {
   for (int i=0; i<numberOfBoardPieces; i++) {
     if (boardPiece[i] == "X") {
@@ -91,4 +90,3 @@ boolean checkNestedFOR(String string, String[] pieces) {
     }
     return win;
   }
-*/

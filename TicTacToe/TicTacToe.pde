@@ -180,9 +180,7 @@ void updateStatus(String status) { // function to update the status message
   String fullStatus = "It is player "+status+"'s turn";
   //String fullStatus = "It is player X's turn";
   float statusTxtX = width*15/16, statusTxtY = height*2.5/7;
-  
-  print("statusTxtX: " + statusTxtX + " statusTxtY: " + statusTxtY);
-  
+    
   pushMatrix();
   translate(statusTxtX, statusTxtY);
   rotate(HALF_PI);
