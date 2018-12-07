@@ -4,7 +4,6 @@ boolean winX = false;
 boolean winO = false;
 
 int numberOfBoardPieces = 9;
-
 String[] boardPiece = new String[numberOfBoardPieces];
 String[] onlyXPiece = new String[numberOfBoardPieces];
 String[] onlyOPiece = new String[numberOfBoardPieces];
@@ -29,7 +28,7 @@ void check3InRow() {
   println("O's won:", winO);
 }
 
-void onlyX() {
+void onlyX() { //views only X pieces, runs checker for onlyX
   for (int i=0; i<numberOfBoardPieces; i++) {
     if (boardPiece[i] == "X") {
       onlyXPiece[i] = "X";
@@ -37,7 +36,7 @@ void onlyX() {
   }
 }
 
-void onlyO() {
+void onlyO() { //views only O pieces, runs checker for onlyO
   for (int i=0; i<numberOfBoardPieces; i++) {
     if (boardPiece[i] == "O") {
       onlyOPiece[i] = "O";
@@ -45,48 +44,72 @@ void onlyO() {
   }
 }
 
-boolean checkNestedFOR(String string, String[] pieces) {
+boolean checkNestedFOR(String symbol, String[][] pieces) {
   boolean win = false;
-  for (int i=3; i<6; i++) {
-    for (int j=0; j<3; j++) {
-      boolean letUsIn = false;
-      if (((1-j)+1) == 6 || ((1-j)+1) == 7 || ((1-j)+1) == 8|| ((4-j)+3) == 6 || ((4-j)+4) == 7 || ((4-j)+4) == 8 || ((5-j)+5) == 6 || ((5-j)+5) == 7 || ((5-j)+5) == 8 || ((7-j)+7) == 6 || ((7-j)+7) == 7 || ((7-j)+7) == 8) {
-        letUsIn = true;
-      }
-      if (((3-j)+3) == 6 || ((3-j)+3) == 7 || ((3-j)+3) == 8) {
-        letUsIn = true;
-      }
-      if (((4-j)+4) == 6 || ((4-j)+4) == 7 || ((4-j)+4) == 8) {
-        letUsIn = true;
-      }
-      if (((5-j)+5) == 6 || ((5-j)+5) == 7 || ((5-j)+5) == 8) {
-        letUsIn = true;
-      }
-      if (((7-j)+7) == 6 || ((7-j)+7) == 7 || ((7-j)+7) == 8) {
-        letUsIn = true;
-      }
-
-
-      if (letUsIn == true) {
-        if (pieces[i] == string && pieces[j] == string && pieces[(i-j)+i] == string) {
-          println("Win");
-          win = true;
-        } else {
-          println("Nothing");
-        }
-        if (onlyXPiece[1] == string && pieces[j] == string && pieces[(1-j)+1] == string) {
-          println("Win");
-          win = true;
-        } else {
-          println("Nothing");
-        }
-        if (onlyXPiece[7] == string && pieces[j] == string && pieces[(7-j)+7] == string) {
-          println("Win");
-          win = true;
-        } else {
-          println("Nothing");
-        }
-      }
-    }
-    return win;
+  //grid[row, column], a 2D array used to store the pieces 
+  
+  //(1D):3 in a row increase by 1 [0,1,2 | 1,2,3 | 2,3,4]
+  //(2D):3 in a row (as it is going down, how R changes & how C changes in each IF statement)
+  //R+1/C(same), R+1/C=1(same), R+1/C=2(same)
+  if (grid[0][0] == symbol && grid[0][1] == symbol && pieces[0][2] == symbol) {
+    //println("Middle: ", "\t\tFirst", "\t\tWin");
+    win = true;
+  } else {
+    //println("Middle: ", "\t\tFirst", "\t\tNothing");
   }
+  if (grid[1][0] == symbol && grid[1][1] == symbol && grid[1][2] == symbol) {
+    //println("Middle: ", "\t\tFirst", "\t\tWin");
+    win = true;
+  } else {
+    //println("Middle: ", "\t\tFirst", "\t\tNothing");
+  }
+  if (pieces[2][0] == symbol && pieces[2][1] == symbol && pieces[2][2] == symbol) {
+    //println("Middle: ", "\t\tFirst", "\t\tWin");
+    win = true;
+  } else {
+    //println("Middle: ", "\t\tFirst", "\t\tNothing");
+  }
+  
+  //(1D):3 in a row increase by 2 [2,4,6]
+  //(2D):3 in a row (as it is going down, how R changes & how C changes in each IF statement)
+  //R(same)/C+1, R=1()/C+1, R=2(same)/C+1
+  if (pieces[0][2] == symbol && pieces[1][1] == symbol && pieces[2][0] == symbol) {
+    //println("Middle: ", "\t\tFirst", "\t\tWin");
+    win = true;
+  } else {
+    println("Middle: ", "\t\tFirst", "\t\tNothing");
+  }
+  
+  //(1D):3 in a row increase by 3 [0,3,6 | 1,4,7 | 2,5,8]
+  //(2D):3 in a row (as it is going down, how R changes & how C changes in each IF statement)
+  //R(same)/C+1, R=1()/C+1, R=2(same)/C+1
+  if (pieces[0][0] == symbol && pieces[1][0] == symbol && pieces[2][0] == symbol) {
+    //println("Middle: ", "\t\tFirst", "\t\tWin");
+    win = true;
+  } else {
+    //println("Middle: ", "\t\tFirst", "\t\tNothing");
+  }
+  if (pieces[0][1] == symbol && pieces[1][1] == symbol && pieces[2][1] == symbol) {
+    //println("Middle: ", "\t\tFirst", "\t\tWin");
+    win = true;
+  } else {
+    //println("Middle: ", "\t\tFirst", "\t\tNothing");
+  }
+  if (pieces[0][2] == symbol && pieces[1][2] == symbol && pieces[2][2] == symbol) {
+    //println("Middle: ", "\t\tFirst", "\t\tWin");
+    win = true;
+  } else {
+    //println("Middle: ", "\t\tFirst", "\t\tNothing");
+  }
+  
+  //(1D):3 in a row increase by 4 [0,4,8]
+  //(2D):3 in a row (as it is going down, how R changes & how C changes in each IF statement)
+  //R+1/C+1, R+1/C+1, R+1/C+1
+  if (pieces[0][0] == symbol && pieces[1][1] == symbol && pieces[2][2] == symbol) {
+    //println("Middle: ", "\t\tFirst", "\t\tWin");
+    win = true;
+  } else {
+    //println("Middle: ", "\t\tFirst", "\t\tNothing");
+  }
+  return win;
+}
