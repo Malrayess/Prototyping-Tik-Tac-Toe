@@ -4,8 +4,6 @@ void setup() {
 }
 
 void draw() {
-}
-
   if (mousePressed) {
     int c, r;
     c = (mouseX-menuW/cellD);
@@ -27,6 +25,8 @@ void draw() {
     }
   }
 }
+
+
 
 void updateStatus() {
 
