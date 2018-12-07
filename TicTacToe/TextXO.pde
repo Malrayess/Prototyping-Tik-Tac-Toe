@@ -1,10 +1,9 @@
-
 //X&O in Board
-if (count == 1 || count == 3 || count == 5 || count == 7 || count == 9) {
+/*if (count == 1 || count == 3 || count == 5 || count == 7 || count == 9) {
   xoText(x, position);
 } else {
   xoText(o, position);
-}
+}*/
 /*
 void xoText(String text, int position) {
   fill(0); //Ink, hexidecimal copied from Color Selector
