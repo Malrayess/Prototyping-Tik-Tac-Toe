@@ -6,8 +6,8 @@ String lastPressed = "";
 String[][] grid;
 
 void setup () {
-  //fullScreen();
-  size(900, 800);
+  fullScreen();
+  //size(900, 800);
   background(0);
   textSetup();
 
@@ -70,20 +70,20 @@ void drawShapes() {
    textFont(exit, 25);
    text(exitbutton, 0, 0, 100, 50);*/
 
-  textDraw(easybutton, mainFont, height, 255, CENTER, CENTER, 0, height*2.5/16, width*1/3, height*6/16); // title
+  textDraw(easybutton, mainFont, height, 255, 0, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); // title
   /*fill(#FFFFFF);
    easy = createFont ("Harrington", 55);
    textAlign (CENTER, CENTER);
    textFont(easy, 75);
    text(easybutton, 0, height*3/16, width*1/3, height*4/16);*/
 
-  textDraw(mediumbutton, mainFont, height, 255, CENTER, CENTER, 0, height*5.5/16, width*1/3, height*6/16);
+  textDraw(mediumbutton, mainFont, height, 255, 0, CENTER, CENTER, height*5.5/16, width*1/3, height*6/16);
   /*medium = createFont ("Harrington", 55);
    textAlign (CENTER, CENTER);
    textFont(medium, 75);
    text(mediumbutton, 0, height*5/16, width*1/3, height*6/16);*/
 
-  textDraw(hardbutton, mainFont, height, 255, CENTER, CENTER, 0, height*8.5/16, width*1/3, height*6/16);
+  textDraw(hardbutton, mainFont, height, 255, 0, CENTER, CENTER, height*8.5/16, width*1/3, height*6/16);
   /*hard = createFont ("Harrington", 55);
    textAlign (CENTER, CENTER);
    textFont(hard, 75);
@@ -181,6 +181,7 @@ void updateStatus(String status) { // function to update the status message
   String fullStatus = "It is player "+status+"'s turn";
   //String fullStatus = "It is player X's turn";
   float statusTxtX = width*15/16, statusTxtY = height*2.5/7;
+  //float statusTxtX = 200, statusTxtY = 200;
 
   pushMatrix();
   translate(statusTxtX, statusTxtY);
