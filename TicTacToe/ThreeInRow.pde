@@ -63,7 +63,45 @@ void onlyO() { //views only O pieces, runs checker for onlyO (attempted to conve
     }
   }
 }*/
+/*I am working on a tic-tac-toe game in my computer science class using processing. In my program, I am coding a 3 in a row checker and I am trying to code this using a 2D array code since my array was initialized as a 2D array when coding the X / O. As well as, my teacher gave us an example of doing this code but in a 1D array, and so I do not know how to convert his example regarding the FOR loops to 2D so that it can run onto my program. I have converted the array code to apply to my program, and it is running, but the code (FOR loops) regarding if someone won is not working. Can someone help me? 
 
+    void onlyX() { //views only X pieces, runs checker for onlyX (attempted to 
+    convert to 2D array form)
+        for (int i=0; i<3; i++) {
+          for (int j=0; j<3; j++) {
+            if (boardPiece[i][j] == "X") {
+              onlyXPiece[i][j] = "X";
+            }
+          }
+        }
+      }
+  
+      /*void onlyX() { //1D Form 
+        for (int i=0; i<numberOfBoardPieces; i++) {
+          if (boardPiece[i] == "X") {
+            onlyXPiece[i] = "X";
+          }
+        }
+      }*/
+  
+    void onlyO() { //views only O pieces, runs checker for onlyO (attempted to 
+    convert to 2D array form)
+       for (int i=0; i<3; i++) {
+         for (int j=0; j<3; j++) {
+           if (boardPiece[i][j] == "O") {
+             onlyOPiece[i][j] = "O";
+            }
+          }
+        }
+      }
+  
+      /*void onlyO() { //1D form
+        for (int i=0; i<numberOfBoardPieces; i++) {
+          if (boardPiece[i] == "O") {
+            onlyOPiece[i] = "O";
+          }
+        }
+      }*/*/
 boolean checkNestedFOR(String symbol, String[][] pieces) {
   boolean win = false;
   //grid[row, column], a 2D array used to store the pieces 
