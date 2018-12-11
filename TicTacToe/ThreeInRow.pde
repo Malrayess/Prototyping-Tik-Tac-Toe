@@ -28,7 +28,7 @@ void check3InRow() {
   println("O's won:", winO);
 }
 
-void onlyX() { //views only X pieces, runs checker for onlyX
+void onlyX() { //views only X pieces, runs checker for onlyX (attempted to convert to 2D array form)
   for (int i=0; i<3; i++) {
     for (int j=0; j<3; j++) {
       if (boardPiece[i][j] == "X") {
@@ -38,7 +38,15 @@ void onlyX() { //views only X pieces, runs checker for onlyX
   }
 }
 
-void onlyO() { //views only O pieces, runs checker for onlyO
+/*void onlyX() { //1D Form 
+  for (int i=0; i<numberOfBoardPieces; i++) {
+    if (boardPiece[i] == "X") {
+      onlyXPiece[i] = "X";
+    }
+  }
+}*/
+
+void onlyO() { //views only O pieces, runs checker for onlyO (attempted to convert to 2D array form)
   for (int i=0; i<3; i++) {
     for (int j=0; j<3; j++) {
       if (boardPiece[i][j] == "O") {
@@ -47,6 +55,14 @@ void onlyO() { //views only O pieces, runs checker for onlyO
     }
   }
 }
+
+/*void onlyO() { //1D form
+  for (int i=0; i<numberOfBoardPieces; i++) {
+    if (boardPiece[i] == "O") {
+      onlyOPiece[i] = "O";
+    }
+  }
+}*/
 
 boolean checkNestedFOR(String symbol, String[][] pieces) {
   boolean win = false;
