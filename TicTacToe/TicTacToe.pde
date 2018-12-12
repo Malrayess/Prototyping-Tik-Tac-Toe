@@ -152,7 +152,7 @@ void draw () {
     c = (mouseX-menuW/cellD);
     c = ((mouseX-menuW)/cellD);
     r = (mouseY-sbh)/(playareaH*1/3);
-    println(c, r, cellD, mouseX-menuW, mouseY-sbh, sbh, mouseY, screenH);
+    //println(c, r, cellD, mouseX-menuW, mouseY-sbh, sbh, mouseY, screenH);
     if (c>=0 && c<=2 && r>=0 && r<=2 && grid[c][r] == "" && mouseX>menuW) { // defines boundaries of where mouse is clicked, if clicked in certain area then it AND in another AND etc. then it runs the code
       if (lastPressed == "X") {  
         updateStatus("X"); // updates status to O
@@ -179,9 +179,7 @@ void updateStatus(String status) { // function to update the status message
   fill(255);
 
   String fullStatus = "It is player "+status+"'s turn";
-  //String fullStatus = "It is player X's turn";
   float statusTxtX = width*15/16, statusTxtY = height*2.5/7;
-  //float statusTxtX = 200, statusTxtY = 200;
 
   pushMatrix();
   translate(statusTxtX, statusTxtY);
@@ -212,10 +210,8 @@ void keyPressed() {
     line(statusX, sbh, statusX, screenH); // Status line
     line(0, height-1, width, height-1); //bottom line closing everything
 
-    for (int c=0; c<=2; c++)
-    {
-      for (int r=0; r<=2; r++)
-      {
+    for (int c=0; c<=2; c++) {
+      for (int r=0; r<=2; r++) {
         grid[c][r] = "";
       }
     }

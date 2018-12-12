@@ -5,65 +5,31 @@ boolean winO = false;
 int count = 0;
 
 String[][] boardPiece = new String[3][3];
-String[][] onlyXPiece = new String[3][3];
-String[][] onlyOPiece = new String[3][3];
-
+//String[][] boardPiece = {{"X", "", "O"},
+                         {"O", "O","O"}, 
+                         {"X", "", "X"}};
+/*
 void check3InRow() {
-  if (count >= 5) {
-    check3InRowX = true;
-    check3InRowO = true;
-  }
-
-  if (check3InRowX == true) {
-    onlyX();
-    winX = checkNestedFOR("X", onlyXPiece);
-  }
-
-  if (check3InRowO == true) {
-    onlyO();
-    winO = checkNestedFOR("O", onlyOPiece);
-  }
-
-  println("X's won:", winX);
-  println("O's won:", winO);
+  println("X wins = "+ str(checkRows("X"))); //inputs into console if X won, calls on checkRows
+  println("O wins = "+ str(checkRows("O"))); //inputs into console if O won, calls on checkRows
 }
 
-void onlyX() { //views only X pieces, runs checker for onlyX (attempted to convert to 2D array form)
-  for (int i=0; i<3; i++) {
-    for (int j=0; j<3; j++) {
-      if (boardPiece[i][j] == "X") {
-        onlyXPiece[i][j] = "X";
-      }
+boolean checkRows(String XorO) { 
+  for (int i=0; i<3; i++) { //for every row
+    boolean win = true;     //set win to true
+    for (int j=0; j<3; j++) { //for every column    
+      if (boardPiece[i][j] != XorO) {  //if the column does not equal the sign that you are checking
+        win = false;                   // meaning its the other, or it's empty, then set win to false
+      }                                
+    }
+    if (win) {
+      return true;    //if win is true, then there are 3 X's or 3 O's in this row, so return true
+    
     }
   }
+  return false;      // if none of the rows contain 3 equal, return false
 }
-
-/*void onlyX() { //1D Form 
-  for (int i=0; i<numberOfBoardPieces; i++) {
-    if (boardPiece[i] == "X") {
-      onlyXPiece[i] = "X";
-    }
-  }
-}*/
-
-void onlyO() { //views only O pieces, runs checker for onlyO (attempted to convert to 2D array form)
-  for (int i=0; i<3; i++) {
-    for (int j=0; j<3; j++) {
-      if (boardPiece[i][j] == "O") {
-        onlyOPiece[i][j] = "O";
-      }
-    }
-  }
-}
-
-/*void onlyO() { //1D form
-  for (int i=0; i<numberOfBoardPieces; i++) {
-    if (boardPiece[i] == "O") {
-      onlyOPiece[i] = "O";
-    }
-  }
-}*/
-
+*/
 boolean checkNestedFOR(String symbol, String[][] pieces) {
   boolean win = false;
   //grid[row, column], a 2D array used to store the pieces 
