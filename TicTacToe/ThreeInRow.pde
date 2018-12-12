@@ -4,11 +4,11 @@ boolean winX = false;
 boolean winO = false;
 int count = 0;
 
-String[][] boardPiece = new String[3][3];
-//String[][] boardPiece = {{"X", "", "O"},
+//String[][] boardPiece = new String[3][3];
+String[][] boardPiece = {{"X", "", "O"},
                          {"O", "O","O"}, 
                          {"X", "", "X"}};
-/*
+
 void check3InRow() {
   println("X wins = "+ str(checkRows("X"))); //inputs into console if X won, calls on checkRows
   println("O wins = "+ str(checkRows("O"))); //inputs into console if O won, calls on checkRows
@@ -29,8 +29,8 @@ boolean checkRows(String XorO) {
   }
   return false;      // if none of the rows contain 3 equal, return false
 }
-*/
-boolean checkNestedFOR(String symbol, String[][] pieces) {
+
+  boolean checkNestedFOR(String symbol, String[][] pieces) {
   boolean win = false;
   //grid[row, column], a 2D array used to store the pieces 
 
