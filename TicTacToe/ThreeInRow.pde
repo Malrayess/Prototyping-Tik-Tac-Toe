@@ -5,9 +5,30 @@ boolean winO = false;
 int count = 0;
 
 //String[][] boardPiece = new String[3][3];
-String[][] boardPiece = {{"X", "", "O"},
-                         {"O", "O","O"}, 
-                         {"X", "", "X"}};
+String[][] boardPiece = 
+  {{"", "", ""}, 
+  {"", "", ""}, 
+  {"", "", ""}};
+int row, column;
+void XOboardplacing() { // this is to fill in the XorO in the boardPiece grid/check where XorO is placed 
+  if (mouseY > sbh && mouseY < (sbh + playareaH*1/3)) { //For rows of grid
+    row = 0;
+  } else if (mouseY > (sbh + playareaH*1/3) && mouseY < (sbh + playareaH*2/3)) {
+    row = 1;
+  } else if (mouseY > (sbh + playareaH*2/3) && mouseY < (height-1)) {
+    row = 2;
+  }
+
+  if (mouseX > menuW && mouseX < col2x) {
+    column = 0;
+  } else if (mouseX > col2x && mouseX < col3x) {
+    column = 1;
+  } else if (mouseX > col3x && mouseX < statusX) {
+    column = 2;
+  }
+
+  boardPiece[row][column] = "X";
+}
 
 void check3InRow() {
   println("X wins = "+ str(checkRows("X"))); //inputs into console if X won, calls on checkRows
@@ -20,17 +41,16 @@ boolean checkRows(String XorO) {
     for (int j=0; j<3; j++) { //for every column    
       if (boardPiece[i][j] != XorO) {  //if the column does not equal the sign that you are checking
         win = false;                   // meaning its the other, or it's empty, then set win to false
-      }                                
+      }
     }
     if (win) {
       return true;    //if win is true, then there are 3 X's or 3 O's in this row, so return true
-    
     }
   }
   return false;      // if none of the rows contain 3 equal, return false
 }
 
-  boolean checkNestedFOR(String symbol, String[][] pieces) {
+boolean checkNestedFOR(String symbol, String[][] pieces) {
   boolean win = false;
   //grid[row, column], a 2D array used to store the pieces 
 
