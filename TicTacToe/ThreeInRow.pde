@@ -9,22 +9,29 @@ String[][] boardPiece =
   {{"", "", ""}, 
   {"", "", ""}, 
   {"", "", ""}};
+
 int row, column;
 void XOboardplacing() { // this is to fill in the XorO in the boardPiece grid/check where XorO is placed 
   if (mouseY > sbh && mouseY < (sbh + playareaH*1/3)) { //For rows of grid
     row = 0;
+    println("row = 0");
   } else if (mouseY > (sbh + playareaH*1/3) && mouseY < (sbh + playareaH*2/3)) {
     row = 1;
+    println("row = 1");
   } else if (mouseY > (sbh + playareaH*2/3) && mouseY < (height-1)) {
     row = 2;
+    println("row = 2");
   }
 
   if (mouseX > menuW && mouseX < col2x) {
     column = 0;
+    println("column = 0");
   } else if (mouseX > col2x && mouseX < col3x) {
     column = 1;
+    println("column = 1");
   } else if (mouseX > col3x && mouseX < statusX) {
     column = 2;
+    println("column = 2");
   }
 
   boardPiece[row][column] = "X";

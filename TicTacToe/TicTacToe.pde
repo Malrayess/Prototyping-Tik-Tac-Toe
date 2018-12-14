@@ -153,7 +153,7 @@ void draw () {
     c = ((mouseX-menuW)/cellD);
     r = (mouseY-sbh)/(playareaH*1/3);
     //println(c, r, cellD, mouseX-menuW, mouseY-sbh, sbh, mouseY, screenH);
-    if (c>=0 && c<=2 && r>=0 && r<=2 && grid[c][r] == "" && mouseX>menuW) { // defines boundaries of where mouse is clicked, if clicked in certain area then it AND in another AND etc. then it runs the code
+    if (c>=0 && c<=2 && r>=0 && r<=2 && grid[c][r] == "" && mouseX>menuW) { // defines boundaries of where mouse is clicked, if clicked in certain area AND in another AND etc. then it runs the code
       if (lastPressed == "X") {  
         updateStatus("X"); // updates status to O
         placing(c, r, "O"); // places O
@@ -167,6 +167,7 @@ void draw () {
       }
     }
   }
+  XOboardplacing();
   check3InRow();
 }
 
