@@ -5,6 +5,8 @@ int statusX, screenW, menuW, screenH, sbh, playareaH, playareaW, cellD, colx, co
 String lastPressed = "";
 String[][] grid;
 
+boolean gameStop = false; // boolean to decide if players can play or not, and if someone won or not
+
 void setup () {
   fullScreen();
   //size(900, 800);
@@ -54,15 +56,15 @@ void drawShapes() {
   line(menuW, sbh + playareaH*2/3, statusX, sbh + playareaH*2/3); // tictactoe line 2 width (bottom)
   line(0, height-1, width, height-1); //bottom line closing everything
 
-  fill(#FFFFFF);
-  rect(0, 0, 100, 40); // exit button
-
   textDraw(title, mainFont, height, 255, CENTER, CENTER, 0, 0, width*1/3, height*5/16);
   /*titleFont = createFont ("Harrington", 55);
    textAlign (CENTER, CENTER);
    textFont(titleFont, 75); //Change the number until it fits
    text(title, 0, height*1/16, width*1/3, height*2/16);*/
 
+  fill(#FFFFFF);
+  rect(0, 0, 100, 40); // exit button
+  
   textDraw(exitbutton, secondaryFont, height, 0, LEFT, TOP, 0, 0, height*0.01, height*6/16);
   /*fill(0);
    exit = createFont ("Stencil", 55);
@@ -153,7 +155,7 @@ void draw () {
     c = ((mouseX-menuW)/cellD);
     r = (mouseY-sbh)/(playareaH*1/3);
     //println(c, r, cellD, mouseX-menuW, mouseY-sbh, sbh, mouseY, screenH);
-    if (c>=0 && c<=2 && r>=0 && r<=2 && grid[c][r] == "" && mouseX>menuW) { // defines boundaries of where mouse is clicked, if clicked in certain area AND in another AND etc. then it runs the code
+    if (c>=0 && c<=2 && r>=0 && r<=2 && grid[c][r] == "" && mouseX>menuW && gameStop == false) { // defines boundaries of where mouse is clicked, if clicked in certain areas then it runs the code , only places if boolean is false AKA only when no one won
       if (lastPressed == "X") {  
         updateStatus("X"); // updates status to O
         placing(c, r, "O"); // places O
@@ -167,7 +169,6 @@ void draw () {
       }
     }
   }
-  XOboardplacing();
   check3InRow();
 }
 
@@ -187,6 +188,7 @@ void updateStatus(String status) { // function to update the status message
   rotate(HALF_PI);
   textSize(55);
   textFont(mainFont);
+  textAlign(LEFT, CENTER); // aligns status to fix the moving problem
   text(fullStatus, 0, 0);
   //textDraw(status, mainFont, height, 255, CENTER, CENTER, statusX, height*3/12, width, height*1/2);
   popMatrix();
@@ -200,6 +202,7 @@ void mousePressed () {
 
 void keyPressed() {
   if (keyCode == 82) {
+    gameStop = false; // each time the reset button is pressed, players are allowed once again to place pieces in the gameboard
     fill(0);
     rect(width*1/3, sbh, width*14/16, height-1);
     stroke(#FFFFFF);
