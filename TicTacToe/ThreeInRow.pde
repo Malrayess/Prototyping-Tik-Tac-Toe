@@ -4,48 +4,16 @@ boolean winX = false;
 boolean winO = false;
 int count = 0;
 
-//String[][] boardPiece = new String[3][3];
-/*String[][] boardPiece = 
- {{"", "", ""}, 
- {"", "", ""}, 
- {"", "", ""}};*/
-
-/*
-int row, column;
- void XOboardplacing() { // this is to fill in the XorO in the boardPiece grid/check where XorO is placed 
- if (mouseY > sbh && mouseY < (sbh + playareaH*1/3)) { //For rows of grid
- row = 0;
- println("row = 0");
- } else if (mouseY > (sbh + playareaH*1/3) && mouseY < (sbh + playareaH*2/3)) {
- row = 1;
- println("row = 1");
- } else if (mouseY > (sbh + playareaH*2/3) && mouseY < (height-1)) {
- row = 2;
- println("row = 2");
- }
- 
- if (mouseX > menuW && mouseX < col2x) {
- column = 0;
- println("column = 0");
- } else if (mouseX > col2x && mouseX < col3x) {
- column = 1;
- println("column = 1");
- } else if (mouseX > col3x && mouseX < statusX) {
- column = 2;
- println("column = 2");
- }
- 
- boardPiece[row][column] = "X";
- }
- */
-
 void check3InRow() {
   if (checkRows("X") || checkColumn("X") || checkDiagonal("X")) { // calls on the boolean loops
+    gameStop = true; // stops any placing after win
     updateStatus("X won the game!"); // text says X won
-    gameStop = true; // stops any placing after win
   } else if (checkRows("O") || checkColumn("O") || checkDiagonal("O")) { // calls on the boolean loops
-    updateStatus("O won the game!"); // text says O won
     gameStop = true; // stops any placing after win
+    updateStatus("O won the game!"); // text says O won
+  } else if (count == 9) {
+    gameStop = true;
+    updateStatus("The game is a tie!");
   }
   //println("X wins = "+ str(checkRows("X"))); //inputs into console if X won, calls on checkRows
   //println("O wins = "+ str(checkRows("O"))); //inputs into console if O won, calls on checkRows
@@ -89,8 +57,43 @@ boolean checkDiagonal(String XorO) {
   }
 }
 
+//String[][] boardPiece = new String[3][3];
+/*String[][] boardPiece = 
+ {{"", "", ""}, 
+ {"", "", ""}, 
+ {"", "", ""}};*/
+
+/*
+int row, column;
+ void XOboardplacing() { // this is to fill in the XorO in the boardPiece grid/check where XorO is placed 
+ if (mouseY > sbh && mouseY < (sbh + playareaH*1/3)) { //For rows of grid
+ row = 0;
+ println("row = 0");
+ } else if (mouseY > (sbh + playareaH*1/3) && mouseY < (sbh + playareaH*2/3)) {
+ row = 1;
+ println("row = 1");
+ } else if (mouseY > (sbh + playareaH*2/3) && mouseY < (height-1)) {
+ row = 2;
+ println("row = 2");
+ }
+ 
+ if (mouseX > menuW && mouseX < col2x) {
+ column = 0;
+ println("column = 0");
+ } else if (mouseX > col2x && mouseX < col3x) {
+ column = 1;
+ println("column = 1");
+ } else if (mouseX > col3x && mouseX < statusX) {
+ column = 2;
+ println("column = 2");
+ }
+ 
+ boardPiece[row][column] = "X";
+ }
+ */
+
 /* HARDCODED TROUBLE THAT CAN BE SYMPLIFIED, NOT USED BECAUSE IT TAKES TOO LONG AND IS TOO MUCH CODE
-boolean checkNestedFOR(String symbol) {
+ boolean checkNestedFOR(String symbol) {
  boolean win = false;
  //grid[row, column], a 2D array used to store the pieces 
  

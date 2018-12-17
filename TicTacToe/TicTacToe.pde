@@ -64,7 +64,7 @@ void drawShapes() {
 
   fill(#FFFFFF);
   rect(0, 0, 100, 40); // exit button
-  
+
   textDraw(exitbutton, secondaryFont, height, 0, LEFT, TOP, 0, 0, height*0.01, height*6/16);
   /*fill(0);
    exit = createFont ("Stencil", 55);
@@ -161,11 +161,13 @@ void draw () {
         placing(c, r, "O"); // places O
         lastPressed = "O"; // switches last pressed O
         grid[c][r] = "O"; // fills that part of grid with O
+        count += 1; // starts adding counter for every piece placed
       } else {
         updateStatus("O"); // updates status to X
         placing(c, r, "X"); // places X
         lastPressed = "X"; // switches last pressed to X
         grid[c][r] = "X"; // fills that part of grid with X
+        count += 1; // starts adding counter for every piece placed
       }
     }
   }
@@ -173,16 +175,23 @@ void draw () {
 }
 
 void updateStatus(String status) { // function to update the status message
+  float statusTxtX = width*15/16, statusTxtY = height*2/8;
+
   fill(0);
   rect(statusX, sbh, width, height-1);
   stroke(#FFFFFF);
   strokeWeight(4);
   line(statusX, sbh, statusX, screenH); // Status line
+  line(0, height-1, width, height-1); //bottom line closing everything
   fill(255);
-
-  String fullStatus = "It is player "+status+"'s turn";
-  float statusTxtX = width*15/16, statusTxtY = height*2.5/7;
-
+  
+  String fullStatus;
+  if (gameStop == false) { // if game is still going, run this code
+    fullStatus = "It is player "+status+"'s turn"; // it is player "XorO's" turn
+  } else {
+    fullStatus = status; // game is stopped, someone won, runs the text that says someone won
+  }
+  
   pushMatrix();
   translate(statusTxtX, statusTxtY);
   rotate(HALF_PI);
@@ -221,5 +230,6 @@ void keyPressed() {
     }
     lastPressed= "O";
     updateStatus("X");
+    count = 0; //  resets amount of pieces to 0
   }
 }
