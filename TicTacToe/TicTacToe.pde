@@ -212,6 +212,9 @@ void mousePressed () {
   if (mouseX>=0 && mouseX <=100 && mouseY>=0 && mouseY<=40) {  //exit button
     exit ();
   }
+  if (mouseX >= 0 && mouseX <= menuW && mouseY >= 0 && mouseY <= height*10/16) { // runs easy AI code when button is clicked
+    placeEasyAI();
+  }
 }
 
 void keyPressed() {
