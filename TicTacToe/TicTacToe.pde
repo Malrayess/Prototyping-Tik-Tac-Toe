@@ -43,6 +43,7 @@ void setup () {
 void drawShapes() {
   stroke(#FFFFFF);
   strokeWeight(4);
+  line(menuW, 0, width, 0); // Top line
   line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
   line(0, height*1/4, width*1/3, height*1/4); //name
   line(0, height*7/16, width*1/3, height*7/16); // easy button
@@ -51,9 +52,10 @@ void drawShapes() {
   line(width, sbh, width*1/3, sbh); //scoreboard
   line(col2x, sbh, col2x, screenH); // tictactoe line 1 (left)
   line(col3x, sbh, col3x, screenH); // tictactoe line 2 (right/center)
-  line(statusX, sbh, statusX, screenH); // Status line
   line(menuW, sbh + playareaH*1/3, statusX, sbh + playareaH*1/3); // tictactoe line 1 width (top)
   line(menuW, sbh + playareaH*2/3, statusX, sbh + playareaH*2/3); // tictactoe line 2 width (bottom)
+  line(statusX, sbh, statusX, screenH); // Status line
+  line(width-1, 0, width-1, height); // Line on the side
   line(0, height-1, width, height-1); //bottom line closing everything
 
   textDraw(title, mainFont, height, 255, CENTER, CENTER, 0, 0, width*1/3, height*5/16);
@@ -171,7 +173,9 @@ void draw () {
       }
     }
   }
-  check3InRow();
+  if (!gameStop) { // because it is a boolean, the exclamation mark means negating or not true AKA false
+    check3InRow();
+  }
 }
 
 void updateStatus(String status) { // function to update the status message
@@ -182,16 +186,17 @@ void updateStatus(String status) { // function to update the status message
   stroke(#FFFFFF);
   strokeWeight(4);
   line(statusX, sbh, statusX, screenH); // Status line
+  line(width-1, 0, width-1, height); // Line on the side
   line(0, height-1, width, height-1); //bottom line closing everything
   fill(255);
-  
+
   String fullStatus;
   if (gameStop == false) { // if game is still going, run this code
     fullStatus = "It is player "+status+"'s turn"; // it is player "XorO's" turn
   } else {
     fullStatus = status; // game is stopped, someone won, runs the text that says someone won
   }
-  
+
   pushMatrix();
   translate(statusTxtX, statusTxtY);
   rotate(HALF_PI);
@@ -222,6 +227,7 @@ void keyPressed() {
     line(menuW, sbh + playareaH*2/3, statusX, sbh + playareaH*2/3); // tictactoe line 2 width (bottom)
     line(statusX, sbh, statusX, screenH); // Status line
     line(0, height-1, width, height-1); //bottom line closing everything
+    line(width-1, 0, width-1, height); // Line on the side
 
     for (int c=0; c<=2; c++) {
       for (int r=0; r<=2; r++) {

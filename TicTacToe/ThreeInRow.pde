@@ -3,20 +3,54 @@ boolean check3InRowO = false;
 boolean winX = false;
 boolean winO = false;
 int count = 0;
+int Xwin = 0;
+int Owin = 0;
 
 void check3InRow() {
   if (checkRows("X") || checkColumn("X") || checkDiagonal("X")) { // calls on the boolean loops
     gameStop = true; // stops any placing after win
     updateStatus("X won the game!"); // text says X won
+    Xwin += 1;    
+    printWinScore("X");
   } else if (checkRows("O") || checkColumn("O") || checkDiagonal("O")) { // calls on the boolean loops
     gameStop = true; // stops any placing after win
     updateStatus("O won the game!"); // text says O won
+    Owin += 1;
+    printWinScore("O");
   } else if (count == 9) {
     gameStop = true;
     updateStatus("The game is a tie!");
   }
   //println("X wins = "+ str(checkRows("X"))); //inputs into console if X won, calls on checkRows
   //println("O wins = "+ str(checkRows("O"))); //inputs into console if O won, calls on checkRows
+}
+
+void printWinScore (String winner) {
+  if (winner == "X") {
+    fill(0);
+    rect(menuW, 0, width, sbh);
+    fill(255);
+    stroke(#FFFFFF);
+    strokeWeight(4);
+    line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
+    line(width, sbh, width*1/3, sbh); //scoreboard
+    line(width-1, 0, width-1, height); // Line on the side
+    textDraw(textscoreboard, mainFont, height, 255, CENTER, TOP, width*7.7/16, 0, width*12/16, height*6/16);
+    textDraw(xscoreboard + Xwin, secondaryFont, height, 255, TOP, CENTER, width*8/16, height*0.01, width*4/16, height*2/16);
+    textDraw(oscoreboard + Owin, secondaryFont, height, 255, TOP, CENTER, width*12/16, height*0.01, width*4/16, height*2/16);
+  } else if (winner == "O") {
+    fill(0);
+    rect(menuW, 0, width, sbh);
+    fill(255);
+    stroke(#FFFFFF);
+    strokeWeight(4);
+    line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
+    line(width, sbh, width*1/3, sbh); //scoreboard
+    line(width-1, 0, width-1, height); // Line on the side
+    textDraw(textscoreboard, mainFont, height, 255, CENTER, TOP, width*7.7/16, 0, width*12/16, height*6/16);
+    textDraw(xscoreboard + Xwin, secondaryFont, height, 255, TOP, CENTER, width*8/16, height*0.01, width*4/16, height*2/16);
+    textDraw(oscoreboard + Owin, secondaryFont, height, 255, TOP, CENTER, width*12/16, height*0.01, width*4/16, height*2/16);
+  }
 }
 
 boolean checkRows(String XorO) { 
