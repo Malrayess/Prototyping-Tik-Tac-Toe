@@ -38,10 +38,12 @@ void textDraw(String string, PFont font, float height, color ink, int alignH, in
     fontSize = fontSize * 0.04; // change number as needed
   } else if (string.length() >= 9) {
     fontSize = fontSize * 0.10; // change number as needed
+  } else if (string.length() >= 8) {
+    fontSize = fontSize * 0.08; // change number as needed
   } else if (string.length() >= 7) {
     fontSize = fontSize * 0.06;
   } else if (string.length() >= 4) {
-    fontSize = fontSize * 0.05;
+    fontSize = fontSize * 0.0425;
   } else if (string.length() >= 2) {
     fontSize = fontSize * 0.06;
   }

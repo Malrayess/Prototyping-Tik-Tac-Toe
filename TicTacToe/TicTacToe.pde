@@ -1,4 +1,4 @@
-String title="Tic-Tac-Toe", exitbutton="Exit", easybutton="Easy Mode", mediumbutton="Medium Mode", hardbutton="Hard Mode", xscoreboard="X = ", oscoreboard="O = ", textscoreboard="Scoreboard", playasswitch="Start game as:", backgroundswitch="Play in:", status="";
+String title="Tic-Tac-Toe", exitbutton="Exit", Twoplayerbutton = "2-Player", easybutton="Easy Mode", mediumbutton="Medium Mode", hardbutton="Hard Mode", xscoreboard="X= ", oscoreboard="O= ", textscoreboard="Scoreboard", playasswitch="Start game as:", backgroundswitch="Play in:", status="";
 PFont mainFont, secondaryFont, placingFont /*, titleFont, exit, easy, medium, hard, xscore, oscore, scoreboard, playas, background*/;
 
 int statusX, screenW, menuW, screenH, sbh, playareaH, playareaW, cellD, colx, col2x, col3x;
@@ -46,6 +46,7 @@ void drawShapes() {
   line(menuW, 0, width, 0); // Top line
   line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
   line(0, height*1/4, width*1/3, height*1/4); //name
+  line(width*0.03, sbh+height*0.01, width*1/3-width*0.03, sbh+height*0.01); //splits title and 2 player gamemode
   line(0, height*7/16, width*1/3, height*7/16); // easy button
   line(0, height*10/16, width*1/3, height*10/16); // medium button
   line(0, height*13/16, width*1/3, height*13/16); // hard button
@@ -58,21 +59,23 @@ void drawShapes() {
   line(width-1, 0, width-1, height); // Line on the side
   line(0, height-1, width, height-1); //bottom line closing everything
 
-  textDraw(title, mainFont, height, 255, CENTER, CENTER, 0, 0, width*1/3, height*5/16);
+  textDraw(title, mainFont, height, 255, CENTER, CENTER, 0, 0, width*1/3, height*2/16+height*0.03);
   /*titleFont = createFont ("Harrington", 55);
    textAlign (CENTER, CENTER);
    textFont(titleFont, 75); //Change the number until it fits
    text(title, 0, height*1/16, width*1/3, height*2/16);*/
 
   fill(#FFFFFF);
-  rect(0, 0, 100, 40); // exit button
+  rect(0, 0, width*0.06, height*0.0475); // exit button
 
-  textDraw(exitbutton, secondaryFont, height, 0, LEFT, TOP, 0, 0, height*0.01, height*6/16);
+  textDraw(exitbutton, secondaryFont, height, 0, TOP, LEFT, 0, 0, width*0.06, height*0.045);
   /*fill(0);
    exit = createFont ("Stencil", 55);
    textAlign (CENTER, CENTER);
    textFont(exit, 25);
    text(exitbutton, 0, 0, 100, 50);*/
+
+  textDraw(Twoplayerbutton, mainFont, height, 255, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05);
 
   textDraw(easybutton, mainFont, height, 255, 0, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); // title
   /*fill(#FFFFFF);
@@ -209,7 +212,7 @@ void updateStatus(String status) { // function to update the status message
 }
 
 void mousePressed () {
-  if (mouseX>=0 && mouseX <=100 && mouseY>=0 && mouseY<=40) {  //exit button
+  if (mouseX>=0 && mouseX <=width*0.06 && mouseY>=0 && mouseY<=height*0.03) {  //exit button
     exit ();
   }
   if (mouseX >= 0 && mouseX <= menuW && mouseY >= 0 && mouseY <= height*10/16) { // runs easy AI code when button is clicked
