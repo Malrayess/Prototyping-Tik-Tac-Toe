@@ -1,10 +1,11 @@
-String title="Tic-Tac-Toe", exitbutton="Exit", Twoplayerbutton = "2-Player", easybutton="Easy Mode", mediumbutton="Medium Mode", hardbutton="Hard Mode", xscoreboard="X= ", oscoreboard="O= ", textscoreboard="Scoreboard", playasswitch="Start game as:", backgroundswitch="Play in:", status="";
+String title="Tic-Tac-Toe", exitbutton="Exit", easybutton="Easy Mode", mediumbutton="Medium Mode", hardbutton="Hard Mode", xscoreboard="X= ", oscoreboard="O= ", textscoreboard="Scoreboard", playasswitch="Start game as:", backgroundswitch="Play in:", status="";
 PFont mainFont, secondaryFont, placingFont /*, titleFont, exit, easy, medium, hard, xscore, oscore, scoreboard, playas, background*/;
 
 int statusX, screenW, menuW, screenH, sbh, playareaH, playareaW, cellD, colx, col2x, col3x;
-String lastPressed = "";
+String lastPressed = "", lastPlayerMode = "";
 String[][] grid;
 
+boolean runMode = false; // boolean to decide if mode is played and not other modes, only one at a time
 boolean gameStop = false; // boolean to decide if players can play or not, and if someone won or not
 
 void setup () {
@@ -34,6 +35,7 @@ void setup () {
     }
   }
 
+  lastPlayerMode = "1~Player";
   lastPressed = "O";
   updateStatus("X");
   println(screenW, playareaW, playareaH, cellD, menuW, statusX, colx, col2x, col3x);
@@ -75,9 +77,9 @@ void drawShapes() {
    textFont(exit, 25);
    text(exitbutton, 0, 0, 100, 50);*/
 
-  textDraw(Twoplayerbutton, mainFont, height, 255, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05);
+  textDraw(lastPlayerMode, mainFont, height, 255, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05);
 
-  textDraw(easybutton, mainFont, height, 255, 0, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); // title
+  textDraw(easybutton, mainFont, height, 255, 0, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16);
   /*fill(#FFFFFF);
    easy = createFont ("Harrington", 55);
    textAlign (CENTER, CENTER);
@@ -160,11 +162,56 @@ void draw () {
     c = ((mouseX-menuW)/cellD);
     r = (mouseY-sbh)/(playareaH*1/3);
     //println(c, r, cellD, mouseX-menuW, mouseY-sbh, sbh, mouseY, screenH);
-    if (c>=0 && c<=2 && r>=0 && r<=2 && grid[c][r] == "" && mouseX>menuW && gameStop == false) { // defines boundaries of where mouse is clicked, if clicked in certain areas then it runs the code , only places if boolean is false AKA only when no one won
+
+    /*if (mouseX >= 0 && mouseX <= menuW && mouseY >= sbh+height*0.01 && mouseY <= height*7/16) {
+     if (lastPlayerMode == "1~Player") {
+     fill(0);
+     rect(0, sbh+height*0.01, menuW, height*2.5/16);
+     fill(255);
+     stroke(4);
+     line(width*0.03, sbh+height*0.01, width*1/3-width*0.03, sbh+height*0.01); //splits title and 2 player gamemode
+     lastPlayerMode = "2~Player";
+     textDraw(lastPlayerMode, mainFont, height, 255, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05);
+     
+     stroke(#D6D6D6);
+     rect(0, height*7/16, menuW, height*13/16);
+     textDraw(easybutton, mainFont, height, 255, 0, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); 
+     textDraw(mediumbutton, mainFont, height, 255, 0, CENTER, CENTER, height*5.5/16, width*1/3, height*6/16);
+     textDraw(hardbutton, mainFont, height, 255, 0, CENTER, CENTER, height*8.5/16, width*1/3, height*6/16);
+     
+     stroke(255);
+     strokeWeight(4);
+     line(0, height*7/16, width*1/3, height*7/16); // easy button
+     line(0, height*10/16, width*1/3, height*10/16); // medium button
+     line(0, height*13/16, width*1/3, height*13/16); // hard button 
+     } else {
+     fill(0);
+     rect(0, sbh+height*0.01, menuW, height*2.5/16);
+     fill(255);
+     stroke(4);
+     line(width*0.03, sbh+height*0.01, width*1/3-width*0.03, sbh+height*0.01); //splits title and 2 player gamemode
+     lastPlayerMode = "1~Player";
+     textDraw(lastPlayerMode, mainFont, height, 255, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05);
+     
+     stroke(0);
+     rect(0, height*7/16, menuW, height*13/16);
+     textDraw(easybutton, mainFont, height, 255, 0, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); 
+     textDraw(mediumbutton, mainFont, height, 255, 0, CENTER, CENTER, height*5.5/16, width*1/3, height*6/16);
+     textDraw(hardbutton, mainFont, height, 255, 0, CENTER, CENTER, height*8.5/16, width*1/3, height*6/16);
+     
+     stroke(255);
+     strokeWeight(4);
+     line(0, height*7/16, width*1/3, height*7/16); // easy button
+     line(0, height*10/16, width*1/3, height*10/16); // medium button
+     line(0, height*13/16, width*1/3, height*13/16); // hard button
+     }
+     }*/
+
+    if (c>=0 && c<=2 && r>=0 && r<=2 && grid[c][r] == "" && mouseX>menuW && gameStop == false && lastPlayerMode == "2~Player") { // defines boundaries of where mouse is clicked, if clicked in certain areas then it runs the code , only places if boolean is false AKA only when no one won
       if (lastPressed == "X") {  
         updateStatus("X"); // updates status to O
         placing(c, r, "O"); // places O
-        lastPressed = "O"; // switches last pressed O
+        lastPressed = "O"; // switches last pressed to O
         grid[c][r] = "O"; // fills that part of grid with O
         count += 1; // starts adding counter for every piece placed
       } else {
@@ -217,6 +264,40 @@ void mousePressed () {
   }
   if (mouseX >= 0 && mouseX <= menuW && mouseY >= 0 && mouseY <= height*10/16) { // runs easy AI code when button is clicked
     //placeEasyAI();
+  }
+}
+
+void mouseReleased () {
+  if (mouseX >= 0 && mouseX <= menuW && mouseY >= sbh+height*0.01 && mouseY <= height*7/16) { // player 1 or player 2 function for either playing against AI or another player
+    if (lastPlayerMode == "1~Player") {
+      fill(0);
+      rect(0, sbh+height*0.015, menuW, height*1/4);
+      fill(255);
+      stroke(4);
+      line(0, height*1/4, width*1/3, height*1/4); //name
+      line(width*0.03, sbh+height*0.01, width*1/3-width*0.03, sbh+height*0.01); //splits title and 2 player gamemode
+      line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
+      lastPlayerMode = "2~Player";
+      textDraw(lastPlayerMode, mainFont, height, 255, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05);
+
+      textDraw(easybutton, mainFont, height, 255, #D6D6D6, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); 
+      textDraw(mediumbutton, mainFont, height, 255, #D6D6D6, CENTER, CENTER, height*5.5/16, width*1/3, height*6/16);
+      textDraw(hardbutton, mainFont, height, 255, #D6D6D6, CENTER, CENTER, height*8.5/16, width*1/3, height*6/16);
+    } else {
+      fill(0);
+      rect(0, sbh+height*0.015, menuW, height*1/4);
+      fill(255);
+      stroke(4);
+      line(0, height*1/4, width*1/3, height*1/4); //name
+      line(width*0.03, sbh+height*0.01, width*1/3-width*0.03, sbh+height*0.01); //splits title and 2 player gamemode
+      line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
+      lastPlayerMode = "1~Player";
+      textDraw(lastPlayerMode, mainFont, height, 255, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05);
+
+      textDraw(easybutton, mainFont, height, 255, 0, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); 
+      textDraw(mediumbutton, mainFont, height, 255, 0, CENTER, CENTER, height*5.5/16, width*1/3, height*6/16);
+      textDraw(hardbutton, mainFont, height, 255, 0, CENTER, CENTER, height*8.5/16, width*1/3, height*6/16);
+    }
   }
 }
 
