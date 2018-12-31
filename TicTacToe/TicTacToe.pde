@@ -271,28 +271,32 @@ void mouseReleased () {
   if (mouseX >= 0 && mouseX <= menuW && mouseY >= sbh+height*0.01 && mouseY <= height*7/16) { // player 1 or player 2 function for either playing against AI or another player
     if (lastPlayerMode == "1~Player") {
       fill(0);
+      stroke(0);
       rect(0, sbh+height*0.015, menuW, height*1/4);
       fill(255);
-      stroke(4);
-      line(0, height*1/4, width*1/3, height*1/4); //name
-      line(width*0.03, sbh+height*0.01, width*1/3-width*0.03, sbh+height*0.01); //splits title and 2 player gamemode
-      line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
       lastPlayerMode = "2~Player";
       textDraw(lastPlayerMode, mainFont, height, 255, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05);
+      stroke(255);
+      strokeWeight(4);
+      line(0, height*1/4, width*1/3, height*1/4); //name
+      //line(width*0.03, sbh+height*0.01, width*1/3-width*0.03, sbh+height*0.01); //splits title and 2 player gamemode
+      line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
 
-      textDraw(easybutton, mainFont, height, 255, #D6D6D6, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); 
-      textDraw(mediumbutton, mainFont, height, 255, #D6D6D6, CENTER, CENTER, height*5.5/16, width*1/3, height*6/16);
-      textDraw(hardbutton, mainFont, height, 255, #D6D6D6, CENTER, CENTER, height*8.5/16, width*1/3, height*6/16);
+      textDraw(easybutton, mainFont, height, #646464, 0, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); 
+      textDraw(mediumbutton, mainFont, height, #646464, 0, CENTER, CENTER, height*5.5/16, width*1/3, height*6/16);
+      textDraw(hardbutton, mainFont, height, #646464, 0, CENTER, CENTER, height*8.5/16, width*1/3, height*6/16);
     } else {
       fill(0);
+      stroke(0);
       rect(0, sbh+height*0.015, menuW, height*1/4);
       fill(255);
-      stroke(4);
+      lastPlayerMode = "1~Player";
+      textDraw(lastPlayerMode, mainFont, height, 255, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05);
+      stroke(255);
+      strokeWeight(4);
       line(0, height*1/4, width*1/3, height*1/4); //name
       line(width*0.03, sbh+height*0.01, width*1/3-width*0.03, sbh+height*0.01); //splits title and 2 player gamemode
       line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
-      lastPlayerMode = "1~Player";
-      textDraw(lastPlayerMode, mainFont, height, 255, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05);
 
       textDraw(easybutton, mainFont, height, 255, 0, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); 
       textDraw(mediumbutton, mainFont, height, 255, 0, CENTER, CENTER, height*5.5/16, width*1/3, height*6/16);
