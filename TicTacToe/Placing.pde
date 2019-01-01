@@ -4,7 +4,6 @@ PFont drawX, drawO;
 int[] gamegrid;
 
 void placing(int c, int r, String symbol) {
-
   fill(255);
   drawX = createFont ("TimesNewRomanPS-BoldMT-48", 55);
   textAlign (CENTER, TOP);
