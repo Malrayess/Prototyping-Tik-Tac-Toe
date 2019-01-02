@@ -25,7 +25,6 @@ void textDraw(String string, PFont font, float height, color ink, int alignH, in
   textAlign(alignH, alignV);
 
   //reference to text calc
-  println(string.length() );
   if (string.length() >= 13) { //number changes depending on geometry ratio (width/height)
     fontSize = textCalculator(height, string, rectWidth);
   } else if (string.length() >= 17) {
@@ -59,9 +58,7 @@ float textCalculator(float size, String string, float rectWidth) {
     size = size * i;
     textSize (size);
     i = i - 0.001;
-    //println("i:", i, "Title Font Size: ", titleFontSize);
   }
-  //println ("New Font Size", titleFontSize);
 
   return size; //purpose of calculator
 }

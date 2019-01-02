@@ -1,5 +1,5 @@
 void placeEasyAI() { //function for placing AI "O"
-  boolean filled = false;
+  filled = false;
   while (filled == false) {
     int j = (int)random(3);
     int i = (int)random(3);

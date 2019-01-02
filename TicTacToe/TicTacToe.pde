@@ -7,6 +7,7 @@ String[][] grid;
 
 boolean runMode = false; // boolean to decide if mode is played and not other modes, only one at a time
 boolean gameStop = false; // boolean to decide if players can play or not, and if someone won or not
+boolean filled = false;
 
 void setup () {
   fullScreen();
@@ -39,7 +40,6 @@ void setup () {
   lastPlayerMode = "1~Player";
   lastPressed = "O";
   updateStatus("X");
-  println(screenW, playareaW, playareaH, cellD, menuW, statusX, colx, col2x, col3x);
   drawShapes();
 }
 
@@ -162,7 +162,6 @@ void draw () {
     c = (mouseX-menuW/cellD);
     c = ((mouseX-menuW)/cellD);
     r = (mouseY-sbh)/(playareaH*1/3);
-    //println(c, r, cellD, mouseX-menuW, mouseY-sbh, sbh, mouseY, screenH);
 
     if (c>=0 && c<=2 && r>=0 && r<=2 && grid[c][r] == "" && mouseX>menuW && gameStop == false && (difficulty !=0 || lastPlayerMode == "2~Player")) { // defines boundaries of where mouse is clicked, if clicked in certain areas then it runs the code , only places if boolean is false AKA only when no one won
       if (lastPressed == "X" && lastPlayerMode == "2~Player") {   // if X was placed AND 2 people are playing, it runs the normal code below
@@ -173,7 +172,7 @@ void draw () {
         count += 1; // starts adding counter for every piece placed
 
         if (!gameStop) { // because it is a boolean, the exclamation mark means negating or not true AKA false
-          check3InRow();
+          check3InRow(); // runs checker for 2 players when O is placed
         }
       } else {
         updateStatus("O"); // updates status to X
@@ -183,7 +182,7 @@ void draw () {
         count += 1; // starts adding counter for every piece placed
 
         if (!gameStop) { // because it is a boolean, the exclamation mark means negating or not true AKA false
-          check3InRow();
+          check3InRow(); // runs checker for 2 players when X is placed
         }
 
         if (lastPlayerMode == "1~Player" && !gameStop) { // if X was placed AND 1 player is playing (overrides previous 2 people are playing) 
@@ -193,11 +192,19 @@ void draw () {
             lastPressed = "O"; // switches last pressed to O
             count += 1; // starts adding counter for every piece placed
           } else if (difficulty == 2) {
+            placeMediumAI(); // runs function for placing Medium AI
+            if (filled == false) {
+              placeEasyAI(); // runs random placement
+            }
+            printGrid();
+            updateStatus("X"); // updates status to O
+            lastPressed = "O"; // switches last pressed to O
+            count += 1; // starts adding counter for every piece placed
           } else if (difficulty == 3) {
           }
         }
         if (!gameStop) { // because it is a boolean, the exclamation mark means negating or not true AKA false
-          check3InRow();
+          check3InRow(); // runs checker for 1 player
         }
       }
     }
@@ -276,8 +283,14 @@ void mouseReleased () {
       textDraw(hardbutton, mainFont, height, 255, 0, CENTER, CENTER, height*8.5/16, width*1/3, height*6/16);
     }
   }
-  if (mouseX >= 0 && mouseX <= menuW && mouseY >= height*1/4 && mouseY <= height*10/16 && lastPlayerMode == "1~Player") { // runs easy AI code when button is clicked
+  if (mouseX >= 0 && mouseX <= menuW && mouseY >= height*4/16 && mouseY <= height*7/16 && lastPlayerMode == "1~Player") { // runs easy AI code when button is clicked
     difficulty = 1;
+  }
+  if (mouseX >= 0 && mouseX <= menuW && mouseY >= height*7/16 && mouseY <= height*10/16 && lastPlayerMode == "1~Player") { // runs medium AI code when button is clicked
+    difficulty = 2;
+  }
+  if (mouseX >= 0 && mouseX <= menuW && mouseY >= height*10/16 && mouseY <= height*13/16 && lastPlayerMode == "1~Player") { // runs hard AI code when button is clicked
+    difficulty = 3;
   }
 }
 
@@ -305,4 +318,12 @@ void keyPressed() {
     updateStatus("X");
     count = 0; //  resets amount of pieces to 0
   }
+}
+
+void printGrid()
+{
+ println(grid[0][0],grid[1][0],grid[2][0]);
+ println(grid[0][1],grid[1][1],grid[2][1]);
+ println(grid[0][2],grid[1][2],grid[2][2]);
+ println("");
 }
