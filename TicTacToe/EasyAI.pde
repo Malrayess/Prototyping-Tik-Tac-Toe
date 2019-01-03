@@ -1,4 +1,4 @@
-void placeEasyAI() { //function for placing AI "O"
+void placeEasyAI() { //Randomly places "O", no specific place, does not block "X", it is only chance that it does
   filled = false;
   while (filled == false) {
     int j = (int)random(3);

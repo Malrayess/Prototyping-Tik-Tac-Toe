@@ -1,4 +1,4 @@
-void placeMediumAI() { //function for placing AI "O"
+void placeMediumAI() { // Blocks "X"'s attempt at winning, if there is two in a row it blocks it, does not check for double threat or tries to attempt one
   filled = false; //sets filled to false, not filled
 
   for (int r=0; r<3; r++) { // checks rows
