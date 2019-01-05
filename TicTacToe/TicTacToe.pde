@@ -245,12 +245,15 @@ void mouseReleased () {
   }
   if (mouseX >= 0 && mouseX <= menuW && mouseY >= height*4/16 && mouseY <= height*7/16 && lastPlayerMode == "1~Player") { // runs easy AI code when button is clicked
     difficulty = 1;
+    keyPressed(); 
   }
   if (mouseX >= 0 && mouseX <= menuW && mouseY >= height*7/16 && mouseY <= height*10/16 && lastPlayerMode == "1~Player") { // runs medium AI code when button is clicked
     difficulty = 2;
+    keyPressed();
   }
   if (mouseX >= 0 && mouseX <= menuW && mouseY >= height*10/16 && mouseY <= height*13/16 && lastPlayerMode == "1~Player") { // runs hard AI code when button is clicked
     difficulty = 3;
+    keyPressed();
   }
 }
 
