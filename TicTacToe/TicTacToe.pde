@@ -1,8 +1,8 @@
-String title="Tic-Tac-Toe", exitbutton="Exit", easybutton="Easy Mode", mediumbutton="Medium Mode", hardbutton="Hard Mode", xscoreboard="X= ", oscoreboard="O= ", textscoreboard="Scoreboard", playasswitch="Start game as:", backgroundswitch="Play in:", status="";
+String title="Tic-Tac-Toe", exitbutton="Exit", easybutton="Easy Mode", mediumbutton="Medium Mode", hardbutton="Hard Mode", xscoreboard="X= ", oscoreboard="O= ", textscoreboard="Scoreboard", status="";
 PFont mainFont, secondaryFont, placingFont;
 
 int statusX, screenW, menuW, screenH, sbh, playareaH, playareaW, cellD, colx, col2x, col3x, difficulty;
-String lastPressed = "", lastPlayerMode = "";
+String lastPressed = "", lastPlayerMode = "", theme = "";
 String[][] grid;
 
 boolean gameStop = false; // boolean to decide if players can play or not, and if someone won or not
@@ -34,6 +34,7 @@ void setup () {
     }
   }
 
+  theme = "Theme: Dark";
   lastPlayerMode = "1~Player";
   lastPressed = "O";
   updateStatus("X");
@@ -41,48 +42,89 @@ void setup () {
 }
 
 void drawShapes() {
-  stroke(#FFFFFF);
-  strokeWeight(4);
-  line(menuW, 0, width, 0); // Top line
-  line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
-  line(0, height*1/4, width*1/3, height*1/4); //name
-  line(width*0.03, sbh+height*0.01, width*1/3-width*0.03, sbh+height*0.01); //splits title and 2 player gamemode
-  line(0, height*7/16, width*1/3, height*7/16); // easy button
-  line(0, height*10/16, width*1/3, height*10/16); // medium button
-  line(0, height*13/16, width*1/3, height*13/16); // hard button
-  line(width, sbh, width*1/3, sbh); //scoreboard
-  line(col2x, sbh, col2x, screenH); // tictactoe line 1 (left)
-  line(col3x, sbh, col3x, screenH); // tictactoe line 2 (right/center)
-  line(menuW, sbh + playareaH*1/3, statusX, sbh + playareaH*1/3); // tictactoe line 1 width (top)
-  line(menuW, sbh + playareaH*2/3, statusX, sbh + playareaH*2/3); // tictactoe line 2 width (bottom)
-  line(statusX, sbh, statusX, screenH); // Status line
-  line(width-1, 0, width-1, height); // Line on the side
-  line(menuW, height-1, width, height-1); //bottom line closing everything
+  if ( theme == "Theme: Dark") {
+    stroke(#FFFFFF);
+    strokeWeight(4);
+    line(menuW, 0, width, 0); // Top line
+    line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
+    line(0, height*1/4, width*1/3, height*1/4); //name
+    line(width*0.03, sbh+height*0.01, width*1/3-width*0.03, sbh+height*0.01); //splits title and 2 player gamemode
+    line(0, height*7/16, width*1/3, height*7/16); // easy button
+    line(0, height*10/16, width*1/3, height*10/16); // medium button
+    line(0, height*13/16, width*1/3, height*13/16); // hard button
+    line(width, sbh, width*1/3, sbh); //scoreboard
+    line(col2x, sbh, col2x, screenH); // tictactoe line 1 (left)
+    line(col3x, sbh, col3x, screenH); // tictactoe line 2 (right/center)
+    line(menuW, sbh + playareaH*1/3, statusX, sbh + playareaH*1/3); // tictactoe line 1 width (top)
+    line(menuW, sbh + playareaH*2/3, statusX, sbh + playareaH*2/3); // tictactoe line 2 width (bottom)
+    line(statusX, sbh, statusX, screenH); // Status line
+    line(width-1, 0, width-1, height); // Line on the side
+    line(menuW, height-1, width, height-1); //bottom line closing everything
 
-  textDraw(title, mainFont, height, 255, CENTER, CENTER, 0, 0, width*1/3, height*2/16+height*0.03); // title text
+    textDraw(title, mainFont, height, 255, CENTER, CENTER, 0, 0, width*1/3, height*2/16+height*0.03); // title text
 
-  fill(#FFFFFF);
-  rect(0, 0, width*0.06, height*0.0475); // exit button
+    fill(#FFFFFF);
+    rect(0, 0, width*0.06, height*0.0475); // exit button
 
-  textDraw(exitbutton, secondaryFont, height, 0, TOP, LEFT, 0, 0, width*0.06, height*0.045); // exit text
+    textDraw(exitbutton, secondaryFont, height, 0, TOP, LEFT, 0, 0, width*0.06, height*0.045); // exit text
 
-  textDraw(lastPlayerMode, mainFont, height, 255, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05); // players text
+    textDraw(lastPlayerMode, mainFont, height, 255, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05); // players text
 
-  textDraw(easybutton, mainFont, height, 255, 0, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); // easy mode text
+    textDraw(easybutton, mainFont, height, 255, 0, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); // easy mode text
 
-  textDraw(mediumbutton, mainFont, height, 255, 0, CENTER, CENTER, height*5.5/16, width*1/3, height*6/16); // medium mode text
+    textDraw(mediumbutton, mainFont, height, 255, 0, CENTER, CENTER, height*5.5/16, width*1/3, height*6/16); // medium mode text
 
-  textDraw(hardbutton, mainFont, height, 255, 0, CENTER, CENTER, height*8.5/16, width*1/3, height*6/16); // hard mode text
+    textDraw(hardbutton, mainFont, height, 255, 0, CENTER, CENTER, height*8.5/16, width*1/3, height*6/16); // hard mode text
 
-  textDraw(playasswitch, mainFont, height, 255, LEFT, CENTER, 0, height*10.5/16, ((width*1/3)/2)+50, height*6/16); //REMOVE THIS ONCE FINISHED AI, FINISH GUI/FINALIZE IT
+    textDraw(theme, mainFont, height, 255, LEFT, CENTER, 0, (height*10.5/16)+75, ((width*1/3)/2)+50, height*6/16); // background switch text
 
-  textDraw(backgroundswitch, mainFont, height, 255, LEFT, CENTER, 0, (height*10.5/16)+75, ((width*1/3)/2)+50, height*6/16); // background switch text
+    textDraw(textscoreboard, mainFont, height, 255, CENTER, TOP, width*7.7/16, 0, width*12/16, height*6/16); // scoreboard text
 
-  textDraw(textscoreboard, mainFont, height, 255, CENTER, TOP, width*7.7/16, 0, width*12/16, height*6/16); // scoreboard text
+    textDraw(xscoreboard, secondaryFont, height, 255, TOP, CENTER, width*8/16, height*0.01, width*4/16, height*2/16); // X scoreboard text
 
-  textDraw(xscoreboard, secondaryFont, height, 255, TOP, CENTER, width*8/16, height*0.01, width*4/16, height*2/16); // X scoreboard text
+    textDraw(oscoreboard, secondaryFont, height, 255, TOP, CENTER, width*12/16, height*0.01, width*4/16, height*2/16); // O scoreboard text
+  } else if ( theme == "Theme: Light") {
+    stroke(0);
+    strokeWeight(4);
+    line(menuW, 0, width, 0); // Top line
+    line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
+    line(0, height*1/4, width*1/3, height*1/4); //name
+    line(width*0.03, sbh+height*0.01, width*1/3-width*0.03, sbh+height*0.01); //splits title and 2 player gamemode
+    line(0, height*7/16, width*1/3, height*7/16); // easy button
+    line(0, height*10/16, width*1/3, height*10/16); // medium button
+    line(0, height*13/16, width*1/3, height*13/16); // hard button
+    line(width, sbh, width*1/3, sbh); //scoreboard
+    line(col2x, sbh, col2x, screenH); // tictactoe line 1 (left)
+    line(col3x, sbh, col3x, screenH); // tictactoe line 2 (right/center)
+    line(menuW, sbh + playareaH*1/3, statusX, sbh + playareaH*1/3); // tictactoe line 1 width (top)
+    line(menuW, sbh + playareaH*2/3, statusX, sbh + playareaH*2/3); // tictactoe line 2 width (bottom)
+    line(statusX, sbh, statusX, screenH); // Status line
+    line(width-1, 0, width-1, height); // Line on the side
+    line(menuW, height-1, width, height-1); //bottom line closing everything
 
-  textDraw(oscoreboard, secondaryFont, height, 255, TOP, CENTER, width*12/16, height*0.01, width*4/16, height*2/16); // O scoreboard text
+    textDraw(title, mainFont, height, 0, CENTER, CENTER, 0, 0, width*1/3, height*2/16+height*0.03); // title text
+
+    fill(0);
+    rect(0, 0, width*0.06, height*0.0475); // exit button
+
+    textDraw(exitbutton, secondaryFont, height, 255, TOP, LEFT, 0, 0, width*0.06, height*0.045); // exit text
+
+    textDraw(lastPlayerMode, mainFont, height, 0, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05); // players text
+
+    textDraw(easybutton, mainFont, height, 0, 0, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); // easy mode text
+
+    textDraw(mediumbutton, mainFont, height, 0, 0, CENTER, CENTER, height*5.5/16, width*1/3, height*6/16); // medium mode text
+
+    textDraw(hardbutton, mainFont, height, 0, 0, CENTER, CENTER, height*8.5/16, width*1/3, height*6/16); // hard mode text
+
+    textDraw(theme, mainFont, height, 0, LEFT, CENTER, 0, (height*10.5/16)+75, ((width*1/3)/2)+50, height*6/16); // background switch text
+
+    textDraw(textscoreboard, mainFont, height, 0, CENTER, TOP, width*7.7/16, 0, width*12/16, height*6/16); // scoreboard text
+
+    textDraw(xscoreboard, secondaryFont, height, 0, TOP, CENTER, width*8/16, height*0.01, width*4/16, height*2/16); // X scoreboard text
+
+    textDraw(oscoreboard, secondaryFont, height, 0, TOP, CENTER, width*12/16, height*0.01, width*4/16, height*2/16); // O scoreboard text
+  }
 }
 
 void draw () {
@@ -155,9 +197,14 @@ void draw () {
             lastPressed = "O"; // switches last pressed to O
             count += 1; // starts adding counter for every piece placed
           } else if (difficulty == 3) {
-            placeMediumAI();
-            placeHardAI();
+            placeHardAI1();
             if (filled == false) {
+              placeMediumAI();
+            } 
+            if (filled == false) {
+              placeHardAI2();
+            }
+            if (filled == false) { 
               placeEasyAI();
             }
             updateStatus("X"); // updates status to O
@@ -176,15 +223,25 @@ void draw () {
 void updateStatus(String status) { // function to update the status message
   float statusTxtX = width*15/16, statusTxtY = height*2/8;
 
-  fill(0);
-  rect(statusX, sbh, width, height-1);
-  stroke(#FFFFFF);
-  strokeWeight(4);
-  line(statusX, sbh, statusX, screenH); // Status line
-  line(width-1, 0, width-1, height); // Line on the side
-  line(menuW, height-1, width, height-1); //bottom line closing everything
-  fill(255);
-
+  if ( theme == "Theme: Dark") {
+    fill(0);
+    rect(statusX, sbh, width, height-1);
+    stroke(#FFFFFF);
+    strokeWeight(4);
+    line(statusX, sbh, statusX, screenH); // Status line
+    line(width-1, 0, width-1, height); // Line on the side
+    line(menuW, height-1, width, height-1); //bottom line closing everything
+    fill(255);
+  } else if ( theme == "Theme: Light") {
+    fill(255);
+    rect(statusX, sbh, width, height-1);
+    stroke(0);
+    strokeWeight(4);
+    line(statusX, sbh, statusX, screenH); // Status line
+    line(width-1, 0, width-1, height); // Line on the side
+    line(menuW, height-1, width, height-1); //bottom line closing everything
+    fill(0);
+  }
   String fullStatus;
   if (gameStop == false) { // if game is still going, run this code
     fullStatus = "It is player "+status+"'s turn"; // it is player "XorO's" turn
@@ -212,40 +269,74 @@ void mousePressed () {
 void mouseReleased () {
   if (mouseX >= 0 && mouseX <= menuW && mouseY >= sbh+height*0.01 && mouseY <= height*1/4) { // player 1 or player 2 function for either playing against AI or another player
     if (lastPlayerMode == "1~Player") {
-      fill(0);
-      stroke(0);
-      rect(0, sbh+height*0.015, menuW, height*1/4);
-      fill(255);
-      lastPlayerMode = "2~Player";
-      textDraw(lastPlayerMode, mainFont, height, 255, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05);
-      stroke(255);
-      strokeWeight(4);
-      line(0, height*1/4, width*1/3, height*1/4); //name
-      line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
+      if (theme == "Theme: Dark") {
+        fill(0);
+        stroke(0);
+        rect(0, sbh+height*0.015, menuW, height*1/4);
+        fill(255);
+        lastPlayerMode = "2~Player";
+        textDraw(lastPlayerMode, mainFont, height, 255, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05);
+        stroke(255);
+        strokeWeight(4);
+        line(0, height*1/4, width*1/3, height*1/4); //name
+        line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
 
-      textDraw(easybutton, mainFont, height, #646464, 0, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); 
-      textDraw(mediumbutton, mainFont, height, #646464, 0, CENTER, CENTER, height*5.5/16, width*1/3, height*6/16);
-      textDraw(hardbutton, mainFont, height, #646464, 0, CENTER, CENTER, height*8.5/16, width*1/3, height*6/16);
+        textDraw(easybutton, mainFont, height, #646464, 0, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); 
+        textDraw(mediumbutton, mainFont, height, #646464, 0, CENTER, CENTER, height*5.5/16, width*1/3, height*6/16);
+        textDraw(hardbutton, mainFont, height, #646464, 0, CENTER, CENTER, height*8.5/16, width*1/3, height*6/16);
+      } else if (theme == "Theme: Light") {
+        fill(255);
+        stroke(255);
+        rect(0, sbh+height*0.015, menuW, height*1/4);
+        fill(255);
+        lastPlayerMode = "2~Player";
+        textDraw(lastPlayerMode, mainFont, height, 0, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05);
+        stroke(0);
+        strokeWeight(4);
+        line(0, height*1/4, width*1/3, height*1/4); //name
+        line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
+
+        textDraw(easybutton, mainFont, height, #646464, 255, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); 
+        textDraw(mediumbutton, mainFont, height, #646464, 255, CENTER, CENTER, height*5.5/16, width*1/3, height*6/16);
+        textDraw(hardbutton, mainFont, height, #646464, 255, CENTER, CENTER, height*8.5/16, width*1/3, height*6/16);
+      }
     } else {
-      fill(0);
-      stroke(0);
-      rect(0, sbh+height*0.015, menuW, height*1/4);
-      fill(255);
-      lastPlayerMode = "1~Player";
-      textDraw(lastPlayerMode, mainFont, height, 255, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05);
-      stroke(255);
-      strokeWeight(4);
-      line(0, height*1/4, width*1/3, height*1/4); //name
-      line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
+      if (theme == "Theme: Dark") {
+        fill(0);
+        stroke(0);
+        rect(0, sbh+height*0.015, menuW, height*1/4);
+        fill(255);
+        lastPlayerMode = "1~Player";
+        textDraw(lastPlayerMode, mainFont, height, 255, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05);
+        stroke(255);
+        strokeWeight(4);
+        line(0, height*1/4, width*1/3, height*1/4); //name
+        line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
 
-      textDraw(easybutton, mainFont, height, 255, 0, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); 
-      textDraw(mediumbutton, mainFont, height, 255, 0, CENTER, CENTER, height*5.5/16, width*1/3, height*6/16);
-      textDraw(hardbutton, mainFont, height, 255, 0, CENTER, CENTER, height*8.5/16, width*1/3, height*6/16);
+        textDraw(easybutton, mainFont, height, 255, 0, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); 
+        textDraw(mediumbutton, mainFont, height, 255, 0, CENTER, CENTER, height*5.5/16, width*1/3, height*6/16);
+        textDraw(hardbutton, mainFont, height, 255, 0, CENTER, CENTER, height*8.5/16, width*1/3, height*6/16);
+      } else if (theme == "Theme: Light") {
+        fill(255);
+        stroke(255);
+        rect(0, sbh+height*0.015, menuW, height*1/4);
+        fill(0);
+        lastPlayerMode = "1~Player";
+        textDraw(lastPlayerMode, mainFont, height, 255, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05);
+        stroke(0);
+        strokeWeight(4);
+        line(0, height*1/4, width*1/3, height*1/4); //name
+        line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
+
+        textDraw(easybutton, mainFont, height, 255, 255, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); 
+        textDraw(mediumbutton, mainFont, height, 255, 255, CENTER, CENTER, height*5.5/16, width*1/3, height*6/16);
+        textDraw(hardbutton, mainFont, height, 255, 255, CENTER, CENTER, height*8.5/16, width*1/3, height*6/16);
+      }
     }
   }
   if (mouseX >= 0 && mouseX <= menuW && mouseY >= height*4/16 && mouseY <= height*7/16 && lastPlayerMode == "1~Player") { // runs easy AI code when button is clicked
     difficulty = 1;
-    keyPressed(); 
+    keyPressed();
   }
   if (mouseX >= 0 && mouseX <= menuW && mouseY >= height*7/16 && mouseY <= height*10/16 && lastPlayerMode == "1~Player") { // runs medium AI code when button is clicked
     difficulty = 2;
@@ -255,22 +346,43 @@ void mouseReleased () {
     difficulty = 3;
     keyPressed();
   }
+  if (mouseX >= 0 && mouseX <= menuW && mouseY >= height*13/16 && mouseY <= height) {
+    if ( theme == "Theme: Dark") {
+      theme = "Theme: Light";
+    } else if ( theme == "Theme: Light") {
+      theme = "Theme: Dark";
+    }
+  }
 }
 
 void keyPressed() {
   if (keyCode == 82) {
     gameStop = false; // each time the reset button is pressed, players are allowed once again to place pieces in the gameboard
-    fill(0);
-    rect(width*1/3, sbh, width*14/16, height-1);
-    stroke(#FFFFFF);
-    strokeWeight(4);
-    line(col2x, sbh, col2x, screenH); // tictactoe line 1 (left)
-    line(col3x, sbh, col3x, screenH); // tictactoe line 2 (right/center)
-    line(menuW, sbh + playareaH*1/3, statusX, sbh + playareaH*1/3); // tictactoe line 1 width (top)
-    line(menuW, sbh + playareaH*2/3, statusX, sbh + playareaH*2/3); // tictactoe line 2 width (bottom)
-    line(statusX, sbh, statusX, screenH); // Status line
-    line(menuW, height-1, width, height-1); //bottom line closing everything
-    line(width-1, 0, width-1, height); // Line on the side
+    if ( theme == "Theme: Dark") {
+      fill(0);
+      rect(width*1/3, sbh, width*14/16, height-1);
+      stroke(#FFFFFF);
+      strokeWeight(4);
+      line(col2x, sbh, col2x, screenH); // tictactoe line 1 (left)
+      line(col3x, sbh, col3x, screenH); // tictactoe line 2 (right/center)
+      line(menuW, sbh + playareaH*1/3, statusX, sbh + playareaH*1/3); // tictactoe line 1 width (top)
+      line(menuW, sbh + playareaH*2/3, statusX, sbh + playareaH*2/3); // tictactoe line 2 width (bottom)
+      line(statusX, sbh, statusX, screenH); // Status line
+      line(menuW, height-1, width, height-1); //bottom line closing everything
+      line(width-1, 0, width-1, height); // Line on the side
+    } else if ( theme == "Theme: Light") {
+      fill(255);
+      rect(width*1/3, sbh, width*14/16, height-1);
+      stroke(0);
+      strokeWeight(4);
+      line(col2x, sbh, col2x, screenH); // tictactoe line 1 (left)
+      line(col3x, sbh, col3x, screenH); // tictactoe line 2 (right/center)
+      line(menuW, sbh + playareaH*1/3, statusX, sbh + playareaH*1/3); // tictactoe line 1 width (top)
+      line(menuW, sbh + playareaH*2/3, statusX, sbh + playareaH*2/3); // tictactoe line 2 width (bottom)
+      line(statusX, sbh, statusX, screenH); // Status line
+      line(menuW, height-1, width, height-1); //bottom line closing everything
+      line(width-1, 0, width-1, height); // Line on the side
+    }
 
     for (int c=0; c<=2; c++) {
       for (int r=0; r<=2; r++) {

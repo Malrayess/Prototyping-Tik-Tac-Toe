@@ -27,29 +27,57 @@ void check3InRow() {
 
 void printWinScore (String winner) {
   if (winner == "X") {
-    fill(0);
-    rect(menuW, 0, width, sbh);
-    fill(255);
-    stroke(#FFFFFF);
-    strokeWeight(4);
-    line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
-    line(width, sbh, width*1/3, sbh); //scoreboard
-    line(width-1, 0, width-1, height); // Line on the side
-    textDraw(textscoreboard, mainFont, height, 255, CENTER, TOP, width*7.7/16, 0, width*12/16, height*6/16);
-    textDraw(xscoreboard + Xwin, secondaryFont, height, 255, TOP, CENTER, width*8/16, height*0.01, width*4/16, height*2/16);
-    textDraw(oscoreboard + Owin, secondaryFont, height, 255, TOP, CENTER, width*12/16, height*0.01, width*4/16, height*2/16);
+    if ( theme == "Theme: Dark") {
+      fill(0);
+      rect(menuW, 0, width, sbh);
+      fill(255);
+      stroke(#FFFFFF);
+      strokeWeight(4);
+      line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
+      line(width, sbh, width*1/3, sbh); //scoreboard
+      line(width-1, 0, width-1, height); // Line on the side
+      textDraw(textscoreboard, mainFont, height, 255, CENTER, TOP, width*7.7/16, 0, width*12/16, height*6/16);
+      textDraw(xscoreboard + Xwin, secondaryFont, height, 255, TOP, CENTER, width*8/16, height*0.01, width*4/16, height*2/16);
+      textDraw(oscoreboard + Owin, secondaryFont, height, 255, TOP, CENTER, width*12/16, height*0.01, width*4/16, height*2/16);
+    } else if ( theme == "Theme: Light") {
+      fill(255);
+      rect(menuW, 0, width, sbh);
+      fill(0);
+      stroke(0);
+      strokeWeight(4);
+      line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
+      line(width, sbh, width*1/3, sbh); //scoreboard
+      line(width-1, 0, width-1, height); // Line on the side
+      textDraw(textscoreboard, mainFont, height, 0, CENTER, TOP, width*7.7/16, 0, width*12/16, height*6/16);
+      textDraw(xscoreboard + Xwin, secondaryFont, height, 0, TOP, CENTER, width*8/16, height*0.01, width*4/16, height*2/16);
+      textDraw(oscoreboard + Owin, secondaryFont, height, 0, TOP, CENTER, width*12/16, height*0.01, width*4/16, height*2/16);
+    }
   } else if (winner == "O") {
-    fill(0);
-    rect(menuW, 0, width, sbh);
-    fill(255);
-    stroke(#FFFFFF);
-    strokeWeight(4);
-    line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
-    line(width, sbh, width*1/3, sbh); //scoreboard
-    line(width-1, 0, width-1, height); // Line on the side
-    textDraw(textscoreboard, mainFont, height, 255, CENTER, TOP, width*7.7/16, 0, width*12/16, height*6/16);
-    textDraw(xscoreboard + Xwin, secondaryFont, height, 255, TOP, CENTER, width*8/16, height*0.01, width*4/16, height*2/16);
-    textDraw(oscoreboard + Owin, secondaryFont, height, 255, TOP, CENTER, width*12/16, height*0.01, width*4/16, height*2/16);
+    if ( theme == "Theme: Dark") {
+      fill(0);
+      rect(menuW, 0, width, sbh);
+      fill(255);
+      stroke(#FFFFFF);
+      strokeWeight(4);
+      line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
+      line(width, sbh, width*1/3, sbh); //scoreboard
+      line(width-1, 0, width-1, height); // Line on the side
+      textDraw(textscoreboard, mainFont, height, 255, CENTER, TOP, width*7.7/16, 0, width*12/16, height*6/16);
+      textDraw(xscoreboard + Xwin, secondaryFont, height, 255, TOP, CENTER, width*8/16, height*0.01, width*4/16, height*2/16);
+      textDraw(oscoreboard + Owin, secondaryFont, height, 255, TOP, CENTER, width*12/16, height*0.01, width*4/16, height*2/16);
+    } else if ( theme == "Theme: Light") {
+      fill(255);
+      rect(menuW, 0, width, sbh);
+      fill(0);
+      stroke(0);
+      strokeWeight(4);
+      line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
+      line(width, sbh, width*1/3, sbh); //scoreboard
+      line(width-1, 0, width-1, height); // Line on the side
+      textDraw(textscoreboard, mainFont, height, 0, CENTER, TOP, width*7.7/16, 0, width*12/16, height*6/16);
+      textDraw(xscoreboard + Xwin, secondaryFont, height,0, TOP, CENTER, width*8/16, height*0.01, width*4/16, height*2/16);
+      textDraw(oscoreboard + Owin, secondaryFont, height, 0, TOP, CENTER, width*12/16, height*0.01, width*4/16, height*2/16);
+    }
   }
 }
 
