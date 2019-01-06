@@ -1,4 +1,4 @@
-String title="Tic-Tac-Toe", exitbutton="Exit", easybutton="Easy Mode", mediumbutton="Medium Mode", hardbutton="Hard Mode", xscoreboard="X= ", oscoreboard="O= ", textscoreboard="Scoreboard", status="";
+String title="Tic-Tac-Toe", exitbutton="Exit", easybutton="Easy Mode", mediumbutton="Medium Mode", hardbutton="Hard Mode", xscoreboard="X= ", oscoreboard="O= ", textscoreboard="Scoreboard", status="", name = "By: Maher Al-Rayess";
 PFont mainFont, secondaryFont, placingFont;
 
 int statusX, screenW, menuW, screenH, sbh, playareaH, playareaW, cellD, colx, col2x, col3x, difficulty;
@@ -11,7 +11,6 @@ boolean filled = false;
 void setup () {
   fullScreen();
   //size(900, 800);
-  background(0);
   textSetup();
 
   statusX = width*14/16;
@@ -43,6 +42,8 @@ void setup () {
 
 void drawShapes() {
   if ( theme == "Theme: Dark") {
+    background(0);
+
     stroke(#FFFFFF);
     strokeWeight(4);
     line(menuW, 0, width, 0); // Top line
@@ -70,20 +71,24 @@ void drawShapes() {
 
     textDraw(lastPlayerMode, mainFont, height, 255, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05); // players text
 
-    textDraw(easybutton, mainFont, height, 255, 0, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); // easy mode text
+    textDraw(easybutton, mainFont, height, 255, CENTER, CENTER, 0, height*2.5/16, width*1/3, height*6/16); // easy mode text
 
-    textDraw(mediumbutton, mainFont, height, 255, 0, CENTER, CENTER, height*5.5/16, width*1/3, height*6/16); // medium mode text
+    textDraw(mediumbutton, mainFont, height, 255, CENTER, CENTER, 0, height*5.5/16, width*1/3, height*6/16); // medium mode text
 
-    textDraw(hardbutton, mainFont, height, 255, 0, CENTER, CENTER, height*8.5/16, width*1/3, height*6/16); // hard mode text
+    textDraw(hardbutton, mainFont, height, 255, CENTER, CENTER, 0, height*8.5/16, width*1/3, height*6/16); // hard mode text
 
-    textDraw(theme, mainFont, height, 255, LEFT, CENTER, 0, (height*10.5/16)+75, ((width*1/3)/2)+50, height*6/16); // background switch text
+    textDraw(theme, mainFont, height, 255, LEFT, CENTER, 0, (height*13/16), ((width*1/3)/2), height*1.75/16); // background switch text
 
     textDraw(textscoreboard, mainFont, height, 255, CENTER, TOP, width*7.7/16, 0, width*12/16, height*6/16); // scoreboard text
 
     textDraw(xscoreboard, secondaryFont, height, 255, TOP, CENTER, width*8/16, height*0.01, width*4/16, height*2/16); // X scoreboard text
 
     textDraw(oscoreboard, secondaryFont, height, 255, TOP, CENTER, width*12/16, height*0.01, width*4/16, height*2/16); // O scoreboard text
+
+    textDraw(name, mainFont, height, 255, CENTER, CENTER, 0, (height*13/16)+(height*1/16), ((width*1/3)/2)+75, height*2/16); // name text
   } else if ( theme == "Theme: Light") {
+    background(255);
+
     stroke(0);
     strokeWeight(4);
     line(menuW, 0, width, 0); // Top line
@@ -111,17 +116,19 @@ void drawShapes() {
 
     textDraw(lastPlayerMode, mainFont, height, 0, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05); // players text
 
-    textDraw(easybutton, mainFont, height, 0, 0, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); // easy mode text
+    textDraw(easybutton, mainFont, height, 0, CENTER, CENTER, 0, height*2.5/16, width*1/3, height*6/16); // easy mode text
 
-    textDraw(mediumbutton, mainFont, height, 0, 0, CENTER, CENTER, height*5.5/16, width*1/3, height*6/16); // medium mode text
+    textDraw(mediumbutton, mainFont, height, 0, CENTER, CENTER, 0, height*5.5/16, width*1/3, height*6/16); // medium mode text
 
-    textDraw(hardbutton, mainFont, height, 0, 0, CENTER, CENTER, height*8.5/16, width*1/3, height*6/16); // hard mode text
+    textDraw(hardbutton, mainFont, height, 0, CENTER, CENTER, 0, height*8.5/16, width*1/3, height*6/16); // hard mode text
 
-    textDraw(theme, mainFont, height, 0, LEFT, CENTER, 0, (height*10.5/16)+75, ((width*1/3)/2)+50, height*6/16); // background switch text
+    textDraw(theme, mainFont, height, 0, LEFT, CENTER, 0, (height*10.5/16)+50, ((width*1/3)/2)+50, height*6/16); // background switch text
 
     textDraw(textscoreboard, mainFont, height, 0, CENTER, TOP, width*7.7/16, 0, width*12/16, height*6/16); // scoreboard text
 
     textDraw(xscoreboard, secondaryFont, height, 0, TOP, CENTER, width*8/16, height*0.01, width*4/16, height*2/16); // X scoreboard text
+
+    textDraw(oscoreboard, secondaryFont, height, 0, TOP, CENTER, width*12/16, height*0.01, width*4/16, height*2/16); // O scoreboard text
 
     textDraw(oscoreboard, secondaryFont, height, 0, TOP, CENTER, width*12/16, height*0.01, width*4/16, height*2/16); // O scoreboard text
   }
@@ -223,7 +230,7 @@ void draw () {
 void updateStatus(String status) { // function to update the status message
   float statusTxtX = width*15/16, statusTxtY = height*2/8;
 
-  if ( theme == "Theme: Dark") {
+  if (theme == "Theme: Dark") {
     fill(0);
     rect(statusX, sbh, width, height-1);
     stroke(#FFFFFF);
@@ -232,7 +239,7 @@ void updateStatus(String status) { // function to update the status message
     line(width-1, 0, width-1, height); // Line on the side
     line(menuW, height-1, width, height-1); //bottom line closing everything
     fill(255);
-  } else if ( theme == "Theme: Light") {
+  } else if (theme == "Theme: Light") {
     fill(255);
     rect(statusX, sbh, width, height-1);
     stroke(0);
@@ -281,14 +288,14 @@ void mouseReleased () {
         line(0, height*1/4, width*1/3, height*1/4); //name
         line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
 
-        textDraw(easybutton, mainFont, height, #646464, 0, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); 
-        textDraw(mediumbutton, mainFont, height, #646464, 0, CENTER, CENTER, height*5.5/16, width*1/3, height*6/16);
-        textDraw(hardbutton, mainFont, height, #646464, 0, CENTER, CENTER, height*8.5/16, width*1/3, height*6/16);
+        textDraw(easybutton, mainFont, height, #646464, CENTER, CENTER, 0, height*2.5/16, width*1/3, height*6/16); 
+        textDraw(mediumbutton, mainFont, height, #646464, CENTER, CENTER, 0, height*5.5/16, width*1/3, height*6/16);
+        textDraw(hardbutton, mainFont, height, #646464, CENTER, CENTER, 0, height*8.5/16, width*1/3, height*6/16);
       } else if (theme == "Theme: Light") {
         fill(255);
         stroke(255);
         rect(0, sbh+height*0.015, menuW, height*1/4);
-        fill(255);
+        fill(0);
         lastPlayerMode = "2~Player";
         textDraw(lastPlayerMode, mainFont, height, 0, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05);
         stroke(0);
@@ -296,9 +303,9 @@ void mouseReleased () {
         line(0, height*1/4, width*1/3, height*1/4); //name
         line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
 
-        textDraw(easybutton, mainFont, height, #646464, 255, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); 
-        textDraw(mediumbutton, mainFont, height, #646464, 255, CENTER, CENTER, height*5.5/16, width*1/3, height*6/16);
-        textDraw(hardbutton, mainFont, height, #646464, 255, CENTER, CENTER, height*8.5/16, width*1/3, height*6/16);
+        textDraw(easybutton, mainFont, height, #646464, CENTER, CENTER, 0, height*2.5/16, width*1/3, height*6/16); 
+        textDraw(mediumbutton, mainFont, height, #646464, CENTER, CENTER, 0, height*5.5/16, width*1/3, height*6/16);
+        textDraw(hardbutton, mainFont, height, #646464, CENTER, CENTER, 0, height*8.5/16, width*1/3, height*6/16);
       }
     } else {
       if (theme == "Theme: Dark") {
@@ -313,26 +320,27 @@ void mouseReleased () {
         line(0, height*1/4, width*1/3, height*1/4); //name
         line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
 
-        textDraw(easybutton, mainFont, height, 255, 0, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); 
-        textDraw(mediumbutton, mainFont, height, 255, 0, CENTER, CENTER, height*5.5/16, width*1/3, height*6/16);
-        textDraw(hardbutton, mainFont, height, 255, 0, CENTER, CENTER, height*8.5/16, width*1/3, height*6/16);
+        textDraw(easybutton, mainFont, height, 255, CENTER, CENTER, 0, height*2.5/16, width*1/3, height*6/16); 
+        textDraw(mediumbutton, mainFont, height, 255, CENTER, CENTER, 0, height*5.5/16, width*1/3, height*6/16);
+        textDraw(hardbutton, mainFont, height, 255, CENTER, CENTER, 0, height*8.5/16, width*1/3, height*6/16);
       } else if (theme == "Theme: Light") {
         fill(255);
         stroke(255);
         rect(0, sbh+height*0.015, menuW, height*1/4);
         fill(0);
         lastPlayerMode = "1~Player";
-        textDraw(lastPlayerMode, mainFont, height, 255, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05);
+        textDraw(lastPlayerMode, mainFont, height, 0, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05);
         stroke(0);
         strokeWeight(4);
         line(0, height*1/4, width*1/3, height*1/4); //name
         line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
 
-        textDraw(easybutton, mainFont, height, 255, 255, CENTER, CENTER, height*2.5/16, width*1/3, height*6/16); 
-        textDraw(mediumbutton, mainFont, height, 255, 255, CENTER, CENTER, height*5.5/16, width*1/3, height*6/16);
-        textDraw(hardbutton, mainFont, height, 255, 255, CENTER, CENTER, height*8.5/16, width*1/3, height*6/16);
+        textDraw(easybutton, mainFont, height, 0, CENTER, CENTER, 0, height*2.5/16, width*1/3, height*6/16); 
+        textDraw(mediumbutton, mainFont, height, 0, CENTER, CENTER, 0, height*5.5/16, width*1/3, height*6/16);
+        textDraw(hardbutton, mainFont, height, 0, CENTER, CENTER, 0, height*8.5/16, width*1/3, height*6/16);
       }
     }
+    keyPressed();
   }
   if (mouseX >= 0 && mouseX <= menuW && mouseY >= height*4/16 && mouseY <= height*7/16 && lastPlayerMode == "1~Player") { // runs easy AI code when button is clicked
     difficulty = 1;
@@ -352,6 +360,8 @@ void mouseReleased () {
     } else if ( theme == "Theme: Light") {
       theme = "Theme: Dark";
     }
+    keyPressed();
+    drawShapes();
   }
 }
 
