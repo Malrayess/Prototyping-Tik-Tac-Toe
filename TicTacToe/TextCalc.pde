@@ -26,6 +26,8 @@ void textDraw(String string, PFont font, float height, color ink, int alignH, in
     fontSize = fontSize * 0.08;
   } else if (string.length() >= 7) {
     fontSize = fontSize * 0.06;
+  } else if (string.length() >= 5) {
+    fontSize = fontSize * 0.0425;
   } else if (string.length() >= 4) {
     fontSize = fontSize * 0.0425;
   } else if (string.length() >= 2) {

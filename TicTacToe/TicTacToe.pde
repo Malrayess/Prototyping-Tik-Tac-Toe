@@ -1,4 +1,4 @@
-String title="Tic-Tac-Toe", exitbutton="Exit", easybutton="Easy Mode", mediumbutton="Medium Mode", hardbutton="Hard Mode", xscoreboard="X= ", oscoreboard="O= ", textscoreboard="Scoreboard", status="", name = "By: Maher Al-Rayess";
+String title="Tic-Tac-Toe", exitbutton="Exit", resetbutton="Reset", easybutton="Easy Mode", mediumbutton="Medium Mode", hardbutton="Hard Mode", xscoreboard="X= ", oscoreboard="O= ", textscoreboard="Scoreboard", status="", name = "By: Maher Al-Rayess";
 PFont mainFont, secondaryFont, placingFont;
 
 int statusX, screenW, menuW, screenH, sbh, playareaH, playareaW, cellD, cellH, colx, col2x, col3x, difficulty;
@@ -68,7 +68,12 @@ void drawShapes() {
     fill(#FFFFFF);
     rect(0, 0, width*0.06, height*0.0475); // exit button
 
+    fill(#FFFFFF);
+    rect(width*0.07, 0, (width*0.06), height*0.0475); // reset button
+
     textDraw(exitbutton, secondaryFont, height, 0, TOP, LEFT, 0, 0, width*0.06, height*0.045); // exit text
+
+    textDraw(resetbutton, secondaryFont, height, 0, TOP, LEFT, width*0.07, 0, width*0.06, height*0.045); // reset text
 
     textDraw(lastPlayerMode, mainFont, height, 255, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05); // players text
 
@@ -113,7 +118,12 @@ void drawShapes() {
     fill(0);
     rect(0, 0, width*0.06, height*0.0475); // exit button
 
+    fill(0);
+    rect(width*0.07, 0, (width*0.06), height*0.0475); // reset button
+
     textDraw(exitbutton, secondaryFont, height, 255, TOP, LEFT, 0, 0, width*0.06, height*0.045); // exit text
+
+    textDraw(resetbutton, secondaryFont, height, 255, TOP, LEFT, width*0.07, 0, width*0.06, height*0.045); // reset text
 
     textDraw(lastPlayerMode, mainFont, height, 0, CENTER, CENTER, 0, height*1.5/16, width*1/3, height*2/16+height*0.05); // players text
 
@@ -245,6 +255,43 @@ void updateStatus(String status) { // function to update the status message
 void mousePressed () {
   if (mouseX>=0 && mouseX <=width*0.06 && mouseY>=0 && mouseY<=height*0.03) {  //exit button
     exit ();
+  }
+  if (mouseX>=width*0.07 && mouseX <=width*0.13 && mouseY>=0 && mouseY<=height*0.03) {  //reset button ALTERNATIVE TO PRESSING "R" ON KEYBOARD 
+    gameStop = false; // each time the reset button is pressed, players are allowed once again to place pieces in the gameboard
+    if ( theme == "Theme: Dark") {
+      fill(0);
+      rect(width*1/3, sbh, width*14/16, height-1);
+      stroke(#FFFFFF);
+      strokeWeight(4);
+      line(col2x, sbh, col2x, screenH); // tictactoe line 1 (left)
+      line(col3x, sbh, col3x, screenH); // tictactoe line 2 (right/center)
+      line(menuW, sbh + playareaH*1/3, statusX, sbh + playareaH*1/3); // tictactoe line 1 width (top)
+      line(menuW, sbh + playareaH*2/3, statusX, sbh + playareaH*2/3); // tictactoe line 2 width (bottom)
+      line(statusX, sbh, statusX, screenH); // Status line
+      line(menuW, height-1, width, height-1); //bottom line closing everything
+      line(width-1, 0, width-1, height); // Line on the side
+    } else if ( theme == "Theme: Light") {
+      fill(255);
+      rect(width*1/3, sbh, width*14/16, height-1);
+      stroke(0);
+      strokeWeight(4);
+      line(col2x, sbh, col2x, screenH); // tictactoe line 1 (left)
+      line(col3x, sbh, col3x, screenH); // tictactoe line 2 (right/center)
+      line(menuW, sbh + playareaH*1/3, statusX, sbh + playareaH*1/3); // tictactoe line 1 width (top)
+      line(menuW, sbh + playareaH*2/3, statusX, sbh + playareaH*2/3); // tictactoe line 2 width (bottom)
+      line(statusX, sbh, statusX, screenH); // Status line
+      line(menuW, height-1, width, height-1); //bottom line closing everything
+      line(width-1, 0, width-1, height); // Line on the side
+    }
+
+    for (int c=0; c<=2; c++) {
+      for (int r=0; r<=2; r++) {
+        grid[c][r] = "";
+      }
+    }
+    lastPressed= "O";
+    updateStatus("X");
+    count = 0; //  resets amount of pieces to 0
   }
 }
 
