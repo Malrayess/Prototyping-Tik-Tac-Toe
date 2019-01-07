@@ -21,8 +21,6 @@ void check3InRow() {
     gameStop = true;
     updateStatus("The game is a tie!");
   }
-  //println("X wins = "+ str(checkRows("X"))); //inputs into console if X won, calls on checkRows
-  //println("O wins = "+ str(checkRows("O"))); //inputs into console if O won, calls on checkRows
 }
 
 void printWinScore (String winner) {
