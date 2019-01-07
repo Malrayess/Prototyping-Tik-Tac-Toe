@@ -251,6 +251,9 @@ void mousePressed () {
 void mouseReleased () {
   if (mouseX >= 0 && mouseX <= menuW && mouseY >= sbh+height*0.01 && mouseY <= height*1/4) { // player 1 or player 2 function for either playing against AI or another player
     if (lastPlayerMode == "1~Player") {
+      keyPressed();
+      Xwin = 0;
+      Owin = 0;
       if (theme == "Theme: Dark") {
         drawShapes();
 
@@ -287,6 +290,9 @@ void mouseReleased () {
         textDraw(hardbutton, mainFont, height, #767676, CENTER, CENTER, 0, height*8.5/16, width*1/3, height*6/16);
       }
     } else {
+      keyPressed();
+      Xwin = 0;
+      Owin = 0;
       if (theme == "Theme: Dark") {
         drawShapes();
 
@@ -323,7 +329,6 @@ void mouseReleased () {
         textDraw(hardbutton, mainFont, height, 0, CENTER, CENTER, 0, height*8.5/16, width*1/3, height*6/16);
       }
     }
-    keyPressed();
   }
 
 
