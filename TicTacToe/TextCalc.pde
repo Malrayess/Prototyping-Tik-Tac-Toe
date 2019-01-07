@@ -31,7 +31,7 @@ void textDraw(String string, PFont font, float height, color ink, int alignH, in
   } else if (string.length() >= 2) {
     fontSize = fontSize * 0.06;
   } else if (string.length() >= 1) {
-    fontSize = fontSize * 0.10;
+    fontSize = fontSize * 0.225;
   }
 
   textFont(font, fontSize); //Change the number until it fits

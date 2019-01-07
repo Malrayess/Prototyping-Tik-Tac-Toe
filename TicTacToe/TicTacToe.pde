@@ -1,7 +1,7 @@
 String title="Tic-Tac-Toe", exitbutton="Exit", easybutton="Easy Mode", mediumbutton="Medium Mode", hardbutton="Hard Mode", xscoreboard="X= ", oscoreboard="O= ", textscoreboard="Scoreboard", status="", name = "By: Maher Al-Rayess";
 PFont mainFont, secondaryFont, placingFont;
 
-int statusX, screenW, menuW, screenH, sbh, playareaH, playareaW, cellD, colx, col2x, col3x, difficulty;
+int statusX, screenW, menuW, screenH, sbh, playareaH, playareaW, cellD, cellH, colx, col2x, col3x, difficulty;
 String lastPressed = "", lastPlayerMode = "", theme = "";
 String[][] grid;
 
@@ -21,6 +21,7 @@ void setup () {
   playareaH = screenH - sbh;
   playareaW = width - menuW - (width - statusX);
   cellD = playareaW*1/3;
+  cellH = playareaH*1/3;
   colx = menuW;
   col2x = menuW + cellD;
   col3x = menuW + (cellD*2);
@@ -85,7 +86,7 @@ void drawShapes() {
 
     textDraw(oscoreboard, secondaryFont, height, 255, TOP, CENTER, width*12/16, height*0.01, width*4/16, height*2/16); // O scoreboard text
 
-    textDraw(name, mainFont, height, 255, CENTER, CENTER, 0, (height*13/16)+(height*1/16), ((width*1/3)/2)+75, height*2/16); // name text
+    textDraw(name, mainFont, height, 255, CENTER, CENTER, 0, (height*13/16)+(height*1/16)+(height*0.02), ((width*1/3)/2)+75, height*2/16); // my name text
   } else if ( theme == "Theme: Light") {
     background(255);
 
@@ -130,7 +131,7 @@ void drawShapes() {
 
     textDraw(oscoreboard, secondaryFont, height, 0, TOP, CENTER, width*12/16, height*0.01, width*4/16, height*2/16); // O scoreboard text
 
-    textDraw(name, mainFont, height, 0, CENTER, CENTER, 0, (height*13/16)+(height*1/16), ((width*1/3)/2)+75, height*2/16); // name text
+    textDraw(name, mainFont, height, 0, CENTER, CENTER, 0, (height*13/16)+(height*1/16)+(height*0.02), ((width*1/3)/2)+75, height*2/16); // my name text
   }
 }
 
