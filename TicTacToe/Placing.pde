@@ -1,5 +1,3 @@
-PFont drawX, drawO;
-
 int[] gamegrid;
 
 void placing(int c, int r, String symbol) {
