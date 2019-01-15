@@ -1,5 +1,3 @@
-int[] gamegrid;
-
 void placing(int c, int r, String symbol) {
   if (theme == "Theme: Dark") {
     //fill(255);
