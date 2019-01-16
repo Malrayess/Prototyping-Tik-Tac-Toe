@@ -148,7 +148,6 @@ void drawShapes() {
 void draw () {
   if (mousePressed) {
     int c, r;
-    c = (mouseX-menuW/cellD);
     c = ((mouseX-menuW)/cellD);
     r = (mouseY-sbh)/(playareaH*1/3);
 
