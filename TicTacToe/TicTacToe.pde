@@ -380,9 +380,10 @@ void mouseReleased () {
 
   if (mouseX >= 0 && mouseX <= menuW && mouseY >= height*4/16 && mouseY <= height*7/16 && lastPlayerMode == "1~Player") { // runs easy AI code when button is clicked
     difficulty = 1;
-    keyPressed();
 
     if (theme == "Theme: Dark" && lastPlayerMode == "1~Player" && difficulty == 1) {
+      keyPressed();
+
       // easy button DARK -> LIGHT
       fill(255);
       strokeWeight(0);
@@ -419,6 +420,8 @@ void mouseReleased () {
       line(0, height*13/16, width*1/3, height*13/16); // hard button
       line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
     } else if (theme == "Theme: Light" && lastPlayerMode == "1~Player" && difficulty == 1) {
+      keyPressed();
+
       // easy button LIGHT -> DARK
       fill(0);
       strokeWeight(0);
@@ -460,9 +463,10 @@ void mouseReleased () {
 
   if (mouseX >= 0 && mouseX <= menuW && mouseY >= height*7/16 && mouseY <= height*10/16 && lastPlayerMode == "1~Player") { // runs medium AI code when button is clicked
     difficulty = 2;
-    keyPressed();
 
     if (theme == "Theme: Dark" && lastPlayerMode == "1~Player" && difficulty == 2) {
+      keyPressed();
+
       // medium button DARK -> LIGHT
       fill(255);
       strokeWeight(0);
@@ -499,6 +503,8 @@ void mouseReleased () {
       line(0, height*13/16, width*1/3, height*13/16); // hard button
       line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
     } else if (theme == "Theme: Light" && lastPlayerMode == "1~Player" && difficulty == 2) {
+      keyPressed();
+
       //medium button LIGHT -> DARK
       fill(0);
       strokeWeight(0);
@@ -540,9 +546,10 @@ void mouseReleased () {
 
   if (mouseX >= 0 && mouseX <= menuW && mouseY >= height*10/16 && mouseY <= height*13/16 && lastPlayerMode == "1~Player") { // runs hard AI code when button is clicked
     difficulty = 3;
-    keyPressed();
 
     if (theme == "Theme: Dark" && lastPlayerMode == "1~Player" && difficulty == 3) {
+      keyPressed();
+
       // hard button DARK -> LIGHT
       fill(255);
       strokeWeight(0);
@@ -579,6 +586,8 @@ void mouseReleased () {
       line(0, height*10/16, width*1/3, height*10/16); // medium button
       line(width*1/3, 0, width*1/3, height); // dividing line between buttons and the game
     } else if (theme == "Theme: Light" && lastPlayerMode == "1~Player" && difficulty == 3) {
+      keyPressed();
+
       // hard button LIGHT -> DARK
       fill(0);
       strokeWeight(0);
